@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Claude Rubim V2 — The Most Complete Claude Code Setup</title>
+  <title>Claude Rubim V2 — O Setup Mais Completo de Claude Code</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -14,6 +14,9 @@
       --accent: #00b4ff;
       --accent2: #0072ff;
       --accent3: #00e5ff;
+      --gold: #FFD700;
+      --silver: #C0C0C0;
+      --bronze: #CD7F32;
       --text: #f0f4ff;
       --muted: #8892a4;
       --border: rgba(0, 180, 255, 0.15);
@@ -69,10 +72,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: rgba(6, 8, 16, 0.8);
+      background: rgba(6, 8, 16, 0.85);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--glass-border);
+      transition: transform 0.3s ease;
     }
 
     .nav-logo {
@@ -90,6 +94,7 @@
       display: flex;
       gap: 2rem;
       list-style: none;
+      align-items: center;
     }
 
     .nav-links a {
@@ -194,18 +199,18 @@
     }
 
     .hero-subtitle {
-      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-size: clamp(1.05rem, 2.5vw, 1.35rem);
       color: var(--muted);
-      max-width: 560px;
+      max-width: 600px;
       margin: 0 auto 2.5rem;
       font-weight: 400;
-      line-height: 1.55;
+      line-height: 1.6;
       animation: fadeInDown 0.8s ease 0.2s both;
     }
 
     .hero-stat {
       display: inline-block;
-      font-size: clamp(1.1rem, 2.5vw, 1.35rem);
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
       font-weight: 700;
       font-family: var(--mono);
       color: var(--accent);
@@ -322,12 +327,51 @@
     .section-desc {
       font-size: 1.05rem;
       color: var(--muted);
-      max-width: 560px;
+      max-width: 580px;
       line-height: 1.65;
     }
 
+    /* ─── COUNTERS STRIP ─── */
+    .counters-strip {
+      background: linear-gradient(135deg, rgba(0,72,255,0.12), rgba(0,180,255,0.06));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .counters-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .counter-num {
+      font-size: 2.75rem;
+      font-weight: 800;
+      font-family: var(--mono);
+      background: linear-gradient(135deg, var(--accent3), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .counter-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.4rem;
+    }
+
     /* ─── COMPARISON ─── */
-    #comparison {
+    #comparacao {
       background: var(--bg2);
     }
 
@@ -424,9 +468,224 @@
       text-align: right;
     }
 
-    /* ─── FEATURES GRID ─── */
-    #features {
+    /* ─── TOP 10 ─── */
+    #top10 {
       background: var(--bg);
+    }
+
+    .top10-header {
+      margin-bottom: 3.5rem;
+    }
+
+    .top10-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .rank-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-left: 4px solid var(--accent);
+      border-radius: 16px;
+      padding: 2rem 2rem 2rem 1.75rem;
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 1.75rem;
+      align-items: start;
+      opacity: 0;
+      transform: translateX(-24px);
+      transition: opacity 0.55s ease, transform 0.55s ease, border-color 0.3s, box-shadow 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rank-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, currentColor, transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .rank-card:hover::before { opacity: 0.3; }
+
+    .rank-card.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .rank-card:hover {
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(0,180,255,0.05);
+      transform: translateX(4px);
+    }
+
+    .rank-card.rank-gold {
+      border-left-color: var(--gold);
+      background: linear-gradient(135deg, rgba(255,215,0,0.04), var(--glass));
+    }
+
+    .rank-card.rank-silver {
+      border-left-color: var(--silver);
+      background: linear-gradient(135deg, rgba(192,192,192,0.04), var(--glass));
+    }
+
+    .rank-card.rank-bronze {
+      border-left-color: var(--bronze);
+      background: linear-gradient(135deg, rgba(205,127,50,0.04), var(--glass));
+    }
+
+    .rank-num-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      padding-top: 0.25rem;
+    }
+
+    .rank-num {
+      font-size: 3rem;
+      font-weight: 900;
+      font-family: var(--mono);
+      line-height: 1;
+      color: var(--muted);
+      opacity: 0.4;
+    }
+
+    .rank-card.rank-gold .rank-num { color: var(--gold); opacity: 1; }
+    .rank-card.rank-silver .rank-num { color: var(--silver); opacity: 1; }
+    .rank-card.rank-bronze .rank-num { color: var(--bronze); opacity: 1; }
+
+    .rank-medal {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .rank-body {}
+
+    .rank-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(0,180,255,0.08);
+      border: 1px solid rgba(0,180,255,0.18);
+      border-radius: 4px;
+      padding: 0.2rem 0.6rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .rank-card.rank-gold .rank-tag { color: var(--gold); background: rgba(255,215,0,0.07); border-color: rgba(255,215,0,0.2); }
+    .rank-card.rank-silver .rank-tag { color: var(--silver); background: rgba(192,192,192,0.07); border-color: rgba(192,192,192,0.2); }
+    .rank-card.rank-bronze .rank-tag { color: var(--bronze); background: rgba(205,127,50,0.07); border-color: rgba(205,127,50,0.2); }
+
+    .rank-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .rank-desc {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+
+    .rank-apps-toggle {
+      background: none;
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      font-family: var(--font);
+      padding: 0.4rem 0.9rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: background 0.2s, border-color 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .rank-apps-toggle:hover {
+      background: rgba(0,180,255,0.07);
+      border-color: rgba(0,180,255,0.3);
+    }
+
+    .rank-apps-toggle .toggle-arrow {
+      display: inline-block;
+      transition: transform 0.25s ease;
+      font-size: 0.7rem;
+    }
+
+    .rank-apps-toggle.open .toggle-arrow {
+      transform: rotate(180deg);
+    }
+
+    .rank-apps {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s ease;
+    }
+
+    .rank-apps.open {
+      max-height: 400px;
+    }
+
+    .rank-apps-inner {
+      margin-top: 0.85rem;
+      padding: 1.1rem 1.25rem;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+    }
+
+    .rank-apps-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.65rem;
+    }
+
+    .rank-apps-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .rank-apps-list li {
+      font-size: 0.86rem;
+      color: var(--text);
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+
+    .rank-apps-list li::before {
+      content: "→";
+      color: var(--accent);
+      flex-shrink: 0;
+      font-weight: 700;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      margin-top: 0.1rem;
+    }
+
+    /* ─── FEATURES GRID ─── */
+    #recursos {
+      background: var(--bg2);
     }
 
     .features-header {
@@ -493,7 +752,7 @@
     .feature-desc {
       font-size: 0.875rem;
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     .feature-tag {
@@ -510,8 +769,178 @@
       padding: 0.2rem 0.6rem;
     }
 
+    /* ─── SQUADS MARQUEE ─── */
+    #squads {
+      background: var(--bg2);
+      padding: 80px 0;
+      overflow: hidden;
+    }
+
+    .squads-header {
+      padding: 0 2rem;
+      margin-bottom: 3rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .marquee-wrapper {
+      position: relative;
+    }
+
+    .marquee-wrapper::before,
+    .marquee-wrapper::after {
+      content: "";
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 120px;
+      z-index: 2;
+    }
+
+    .marquee-wrapper::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--bg2), transparent);
+    }
+
+    .marquee-wrapper::after {
+      right: 0;
+      background: linear-gradient(-90deg, var(--bg2), transparent);
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 1rem;
+      animation: marquee 30s linear infinite;
+      width: max-content;
+    }
+
+    .marquee-track2 {
+      display: flex;
+      gap: 1rem;
+      animation: marquee 24s linear infinite reverse;
+      width: max-content;
+      margin-top: 1rem;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .squad-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      padding: 0.55rem 1.15rem;
+      font-size: 0.825rem;
+      font-weight: 600;
+      color: var(--text);
+      white-space: nowrap;
+      transition: border-color 0.2s;
+    }
+
+    .squad-pill:hover { border-color: rgba(0,180,255,0.3); }
+    .squad-pill span { font-size: 1rem; }
+
+    /* ─── USE CASES ─── */
+    #casos-de-uso {
+      background: var(--bg);
+    }
+
+    .use-cases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+    }
+
+    .use-case-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(28px);
+    }
+
+    .use-case-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.55s ease, transform 0.55s ease, border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .use-case-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .use-case-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,180,255,0.3);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(0,180,255,0.06);
+    }
+
+    .use-case-card:hover::before { opacity: 1; }
+
+    .use-case-persona {
+      font-size: 2.5rem;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .use-case-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: var(--text);
+    }
+
+    .use-case-subtitle {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .use-case-commands {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .use-case-commands li {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .cmd-name {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+
+    .cmd-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
     /* ─── ARCHITECTURE ─── */
-    #architecture {
+    #arquitetura {
       background: var(--bg2);
     }
 
@@ -536,7 +965,7 @@
     }
 
     .arch-tree::before {
-      content: "STRUCTURE";
+      content: "ESTRUTURA";
       position: absolute;
       top: 1rem; right: 1rem;
       font-size: 0.65rem;
@@ -546,29 +975,11 @@
       opacity: 0.5;
     }
 
-    .tree-root {
-      color: var(--accent3);
-      font-weight: 700;
-    }
-
-    .tree-branch {
-      color: var(--muted);
-    }
-
-    .tree-name {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .tree-count {
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    .tree-note {
-      color: #4a6080;
-      font-weight: 400;
-    }
+    .tree-root { color: var(--accent3); font-weight: 700; }
+    .tree-branch { color: var(--muted); }
+    .tree-name { color: var(--text); font-weight: 600; }
+    .tree-count { color: var(--accent); font-weight: 700; }
+    .tree-note { color: #4a6080; font-weight: 400; }
 
     .arch-stats {
       display: flex;
@@ -591,10 +1002,7 @@
       border-color: rgba(0,180,255,0.25);
     }
 
-    .arch-stat-icon {
-      font-size: 2rem;
-      flex-shrink: 0;
-    }
+    .arch-stat-icon { font-size: 2rem; flex-shrink: 0; }
 
     .arch-stat-num {
       font-size: 1.75rem;
@@ -611,7 +1019,7 @@
     }
 
     /* ─── INSTALL ─── */
-    #install {
+    #instalar {
       background: var(--bg);
       text-align: center;
     }
@@ -695,126 +1103,9 @@
     .cmd-prompt { color: var(--accent); font-weight: 700; }
     .cmd-text { color: var(--text); }
     .cmd-comment { color: #3a5070; }
-
-    /* ─── SQUADS MARQUEE ─── */
-    #squads {
-      background: var(--bg2);
-      padding: 80px 0;
-      overflow: hidden;
-    }
-
-    .squads-header {
-      padding: 0 2rem;
-      margin-bottom: 3rem;
-      max-width: 1200px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .marquee-wrapper {
-      position: relative;
-    }
-
-    .marquee-wrapper::before,
-    .marquee-wrapper::after {
-      content: "";
-      position: absolute;
-      top: 0; bottom: 0;
-      width: 120px;
-      z-index: 2;
-    }
-
-    .marquee-wrapper::before {
-      left: 0;
-      background: linear-gradient(90deg, var(--bg2), transparent);
-    }
-
-    .marquee-wrapper::after {
-      right: 0;
-      background: linear-gradient(-90deg, var(--bg2), transparent);
-    }
-
-    .marquee-track {
-      display: flex;
-      gap: 1rem;
-      animation: marquee 30s linear infinite;
-      width: max-content;
-    }
-
-    .marquee-track2 {
-      display: flex;
-      gap: 1rem;
-      animation: marquee 24s linear infinite reverse;
-      width: max-content;
-      margin-top: 1rem;
-    }
-
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    .squad-pill {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      border-radius: 100px;
-      padding: 0.55rem 1.15rem;
-      font-size: 0.825rem;
-      font-weight: 600;
-      color: var(--text);
-      white-space: nowrap;
-      transition: border-color 0.2s;
-    }
-
-    .squad-pill:hover { border-color: rgba(0,180,255,0.3); }
-    .squad-pill span { font-size: 1rem; }
-
-    /* ─── COUNTERS STRIP ─── */
-    .counters-strip {
-      background: linear-gradient(135deg, rgba(0,72,255,0.12), rgba(0,180,255,0.06));
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 3rem 2rem;
-    }
-
-    .counters-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 2rem;
-      text-align: center;
-    }
-
-    .counter-item {}
-
-    .counter-num {
-      font-size: 2.75rem;
-      font-weight: 800;
-      font-family: var(--mono);
-      background: linear-gradient(135deg, var(--accent3), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1;
-    }
-
-    .counter-suffix {
-      font-size: 1.5rem;
-      font-weight: 800;
-    }
-
-    .counter-label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: var(--muted);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-top: 0.4rem;
-    }
+    .sh-cmd { color: #7dd3fc; }
+    .sh-flag { color: #86efac; }
+    .sh-path { color: #fde68a; }
 
     /* ─── FOOTER ─── */
     footer {
@@ -822,6 +1113,8 @@
       border-top: 1px solid var(--glass-border);
       padding: 3rem 2rem;
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     .footer-logo {
@@ -876,6 +1169,12 @@
     .reveal-delay-4 { transition-delay: 0.4s; }
 
     /* ─── RESPONSIVE ─── */
+    @media (max-width: 1024px) {
+      .use-cases-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
     @media (max-width: 768px) {
       .nav-links { display: none; }
 
@@ -887,13 +1186,19 @@
       .comp-name { font-size: 0.825rem; }
       .comp-v2 { font-size: 1rem; }
 
-      .arch-grid {
+      .arch-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr; }
+
+      .use-cases-grid {
         grid-template-columns: 1fr;
       }
 
-      .features-grid {
-        grid-template-columns: 1fr;
+      .rank-card {
+        grid-template-columns: 60px 1fr;
+        gap: 1rem;
       }
+
+      .rank-num { font-size: 2.2rem; }
     }
 
     @media (max-width: 520px) {
@@ -901,23 +1206,19 @@
       .comp-cell { padding: 0.875rem 0.6rem; }
       .growth-label { display: none; }
     }
-
-    /* ─── SYNTAX HIGHLIGHT ─── */
-    .sh-cmd { color: #7dd3fc; }
-    .sh-flag { color: #86efac; }
-    .sh-path { color: #fde68a; }
   </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
+<nav id="main-nav">
   <div class="nav-logo">Claude Rubim V2</div>
   <ul class="nav-links">
-    <li><a href="#comparison">Compare</a></li>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#architecture">Structure</a></li>
-    <li><a href="#install" class="nav-cta">Install</a></li>
+    <li><a href="#comparacao">Comparacao</a></li>
+    <li><a href="#top10">Top 10</a></li>
+    <li><a href="#recursos">Recursos</a></li>
+    <li><a href="#squads">Squads</a></li>
+    <li><a href="#instalar" class="nav-cta">Instalar</a></li>
   </ul>
 </nav>
 
@@ -927,25 +1228,24 @@
   <div>
     <div class="hero-badge">
       <span class="badge-dot"></span>
-      Now Available — V2 Release
+      Disponivel Agora &mdash; Versao 2.0
     </div>
     <h1 class="hero-title">
       <span class="hero-title-gradient">Claude Rubim V2</span>
     </h1>
     <p class="hero-subtitle">
-      The most complete Claude Code setup ever built.
-      Agents, skills, squads, and orchestration — all in one command.
+      O setup mais completo de Claude Code ja construido. 937 comandos, 344 agentes, 211 skills &mdash; tudo em um unico instalador.
     </p>
     <div class="hero-stat">
-      <span>937</span> commands &nbsp;•&nbsp; <span>344</span> agents &nbsp;•&nbsp; <span>211</span> skills
+      <span>937</span> comandos &nbsp;&bull;&nbsp; <span>344</span> agentes &nbsp;&bull;&nbsp; <span>211</span> skills &nbsp;&bull;&nbsp; <span>86</span> namespaces
     </div>
     <div class="hero-actions">
-      <a href="#install" class="btn-primary">Get Started</a>
-      <a href="#comparison" class="btn-secondary">See What Changed</a>
+      <a href="#instalar" class="btn-primary">Instalar Agora</a>
+      <a href="#comparacao" class="btn-secondary">Ver Evolucao</a>
     </div>
   </div>
   <div class="hero-scroll">
-    Scroll
+    Rolar
     <div class="scroll-arrow"></div>
   </div>
 </section>
@@ -955,11 +1255,11 @@
   <div class="counters-inner">
     <div class="counter-item reveal">
       <div class="counter-num" data-target="937">0</div>
-      <div class="counter-label">Slash Commands</div>
+      <div class="counter-label">Comandos</div>
     </div>
     <div class="counter-item reveal reveal-delay-1">
       <div class="counter-num" data-target="344">0</div>
-      <div class="counter-label">Agent Personas</div>
+      <div class="counter-label">Agentes</div>
     </div>
     <div class="counter-item reveal reveal-delay-2">
       <div class="counter-num" data-target="211">0</div>
@@ -975,26 +1275,26 @@
     </div>
     <div class="counter-item reveal reveal-delay-4">
       <div class="counter-num" data-target="28">0</div>
-      <div class="counter-label">Automation Hooks</div>
+      <div class="counter-label">Hooks</div>
     </div>
   </div>
 </div>
 
-<!-- COMPARISON -->
-<section id="comparison">
+<!-- COMPARACAO V1 vs V2 -->
+<section id="comparacao">
   <div class="container">
     <div class="comparison-header reveal">
       <div class="section-label">V1 vs V2</div>
-      <h2 class="section-title">Not an update.<br>A complete rebuild.</h2>
-      <p class="section-desc">Every component was reimagined and expanded. The numbers speak for themselves.</p>
+      <h2 class="section-title">Nao e uma atualizacao.<br>E uma reconstrucao completa.</h2>
+      <p class="section-desc">Cada componente foi reimaginado e expandido. Os numeros falam por si mesmos.</p>
     </div>
 
     <div class="comparison-table reveal">
       <div class="comp-row comp-header">
-        <div class="comp-cell">Component</div>
+        <div class="comp-cell">Componente</div>
         <div class="comp-cell">V1</div>
         <div class="comp-cell">V2</div>
-        <div class="comp-cell">Growth</div>
+        <div class="comp-cell">Crescimento</div>
       </div>
 
       <div class="comp-row">
@@ -1010,7 +1310,7 @@
       </div>
 
       <div class="comp-row">
-        <div class="comp-cell"><span class="comp-name">Agents</span></div>
+        <div class="comp-cell"><span class="comp-name">Agentes</span></div>
         <div class="comp-cell"><span class="comp-v1">16</span></div>
         <div class="comp-cell"><span class="comp-v2">344</span></div>
         <div class="comp-cell">
@@ -1028,7 +1328,7 @@
         <div class="comp-cell">
           <div class="comp-growth">
             <div class="growth-bar-wrap"><div class="growth-bar" data-width="88"></div></div>
-            <span class="growth-label" style="color: #34d399;">NEW</span>
+            <span class="growth-label" style="color: #34d399;">NOVO</span>
           </div>
         </div>
       </div>
@@ -1058,7 +1358,7 @@
       </div>
 
       <div class="comp-row">
-        <div class="comp-cell"><span class="comp-name">Command Namespaces</span></div>
+        <div class="comp-cell"><span class="comp-name">Namespaces</span></div>
         <div class="comp-cell"><span class="comp-v1">15</span></div>
         <div class="comp-cell"><span class="comp-v2">86</span></div>
         <div class="comp-cell">
@@ -1072,69 +1372,347 @@
   </div>
 </section>
 
-<!-- FEATURES -->
-<section id="features">
+<!-- TOP 10 -->
+<section id="top10">
+  <div class="container">
+    <div class="top10-header reveal">
+      <div class="section-label">Ranking Oficial</div>
+      <h2 class="section-title">Top 10 &mdash; Os Recursos Mais Poderosos</h2>
+      <p class="section-desc">Ranking dos 10 recursos mais impactantes da V2, com detalhes e aplicacoes praticas para cada um.</p>
+    </div>
+
+    <div class="top10-list">
+
+      <!-- #1 -->
+      <div class="rank-card rank-gold">
+        <div class="rank-num-wrap">
+          <div class="rank-num">1</div>
+          <div class="rank-medal">&#127947;</div>
+        </div>
+        <div class="rank-body">
+          <span class="rank-tag">Rede de Agentes</span>
+          <div class="rank-title">344 Agentes Especializados</div>
+          <div class="rank-desc">Cada agente e uma persona completa com personalidade, expertise e instrucoes detalhadas. Cobrem desenvolvimento, infraestrutura, dados, seguranca, negocios, marketing e ate mercado chines. Nao sao chatbots genericos &mdash; sao especialistas com opinioes proprias, padroes de trabalho e conhecimento tecnico profundo.</div>
+          <button class="rank-apps-toggle" onclick="toggleApps(this)">
+            Aplicacoes Praticas <span class="toggle-arrow">&#9660;</span>
+          </button>
+          <div class="rank-apps">
+            <div class="rank-apps-inner">
+              <div class="rank-apps-label">Exemplos de uso</div>
+              <ul class="rank-apps-list">
+                <li>Code review com agente senior que conhece React, Next.js, Vue, Angular, Django, Rails, Spring Boot e Laravel em profundidade</li>
+                <li>Auditoria de seguranca com penetration tester e compliance auditor que identificam vulnerabilidades antes de chegar em producao</li>
+                <li>Arquitetura de sistemas com cloud architect especializado em AWS/Azure/GCP e Kubernetes specialist com experiencia em producao</li>
+                <li>Marketing com SEO specialist, copywriter, growth hacker e social media strategist atuando em conjunto no mesmo projeto</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- #2 -->
+      <div class="rank-card rank-silver">
+        <div class="rank-num-wrap">
+          <div class="rank-num">2</div>
+          <div class="rank-medal">&#129352;</div>
+        </div>
+        <div class="rank-body">
+          <span class="rank-tag">12 Squads</span>
+          <div class="rank-title">Expert Squads (Times de Especialistas)</div>
+          <div class="rank-desc">12 times completos com personalidades reais simuladas. Cada squad tem 5 a 15 agentes que debatem, criticam e refinam entre si para gerar output superior ao que qualquer agente individual produziria. A dinamica de grupo produz resultados mais robustos e bem fundamentados.</div>
+          <button class="rank-apps-toggle" onclick="toggleApps(this)">
+            Aplicacoes Praticas <span class="toggle-arrow">&#9660;</span>
+          </button>
+          <div class="rank-apps">
+            <div class="rank-apps-inner">
+              <div class="rank-apps-label">Exemplos de uso</div>
+              <ul class="rank-apps-list">
+                <li>Advisory Board com Ray Dalio, Charlie Munger, Naval Ravikant e Peter Thiel para decisoes estrategicas de negocio</li>
+                <li>Copy Squad com Gary Halbert, Eugene Schwartz e David Ogilvy para criar textos de venda de alta conversao</li>
+                <li>Brand Squad com David Aaker e Marty Neumeier para posicionamento de marca e diferenciacao competitiva</li>
+                <li>Design Squad com Brad Frost e Dan Mall para criar e auditar sistemas de design escaláveis</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- #3 -->
+      <div class="rank-card rank-bronze">
+        <div class="rank-num-wrap">
+          <div class="rank-num">3</div>
+          <div class="rank-medal">&#129353;</div>
+        </div>
+        <div class="rank-body">
+          <span class="rank-tag">86 Namespaces</span>
+          <div class="rank-title">937 Slash Commands (86 Namespaces)</div>
+          <div class="rank-desc">Comandos organizados por dominio que automatizam qualquer fluxo de trabalho. De /git:commit ate /mktg-cro:page, cada comando e uma operacao completa com instrucoes detalhadas. A organizacao em namespaces torna a descoberta intuitiva e o uso consistente.</div>
+          <button class="rank-apps-toggle" onclick="toggleApps(this)">
+            Aplicacoes Praticas <span class="toggle-arrow">&#9660;</span>
+          </button>
+          <div class="rank-apps">
+            <div class="rank-apps-inner">
+              <div class="rank-apps-label">Exemplos de uso</div>
+              <ul class="rank-apps-list">
+                <li>/dev:code-review para revisao completa de codigo com identificacao de bugs, problemas de performance e violacoes de boas praticas</li>
+                <li>/deploy:ci-setup para configurar pipeline CI/CD do zero no GitHub Actions, GitLab CI ou Jenkins</li>
+                <li>/security:audit para auditoria completa de seguranca com relatorio de vulnerabilidades priorizadas por severidade</li>
+                <li>/mktg-seo:audit para auditoria SEO completa com recomendacoes actionaveis e priorizadas por impacto</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- #4 -->
+      <div class="rank-card">
+        <div class="rank-num-wrap">
+          <div class="rank-num">4</div>
+        </div>
+        <div class="rank-body">
+          <span class="rank-tag">Marketing 360</span>
+          <div class="rank-title">Suite Completa de Marketing (22 Namespaces)</div>
+          <div class="rank-desc">Sistema integrado cobrindo todo o funil de marketing: atracao com SEO, content e ads; conversao com CRO, landing pages e popups; retencao com email, CRM e onboarding. Training data disponivel em 11 idiomas para campanhas globais.</div>
+          <button class="rank-apps-toggle" onclick="toggleApps(this)">
+            Aplicacoes Praticas <span class="toggle-arrow">&#9660;</span>
+          </button>
+          <div class="rank-apps">
+            <div class="rank-apps-inner">
+              <div class="rank-apps-label">Exemplos de uso</div>
+              <ul class="rank-apps-list">
+                <li>/mktg-cro:page para otimizar paginas de conversao com psicologia aplicada e principios de persuasao</li>
+                <li>/mktg-content:landing para criar landing pages de alta conversao com copywriting estruturado</li>
+                <li>/mktg-analytics:funnel para analisar funil de conversao e identificar gargalos com recomendacoes especificas</li>
+                <li>/mktg-seo:keywords para pesquisa de palavras-chave com analise de intencao de busca e oportunidades de conteudo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- #5 -->
+      <div class="rank-card">
+        <div class="rank-num-wrap">
+          <div class="rank-num">5</div>
+        </div>
+        <div class="rank-body">
+          <span class="rank-tag">Skill Libraries</span>
+          <div class="rank-title">211 Skills (Bibliotecas de Conhecimento)</div>
+          <div class="rank-desc">Skills sao modulos autonomos que combinam prompts, referencias e logica especializada. O Learning Network (ln-*) sozinho tem mais de 50 skills cobrindo documentacao, auditoria, qualidade de codigo e otimizacao de performance, cada uma com workers paralelos para execucao rapida.</div>
+          <button class="rank-apps-toggle" onclick="toggleApps(this)">
+            Aplicacoes Praticas <span class="toggle-arrow">&#9660;</span>
+          </button>
+          <div class="rank-apps">
+            <div class="rank-apps-inner">
+              <div class="rank-apps-label">Exemplos de uso</div>
+              <ul class="rank-apps-list">
+                <li>ln-620-codebase-auditor para auditoria completa de codigo com 9 workers paralelos analisando seguranca, performance e qualidade</li>
+                <li>ln-700-project-bootstrap para inicializar projetos com Clean Architecture, testes configurados e CI/CD pronto</li>
+                <li>ln-810-performance-optimizer para otimizacao de performance com profiling multi-ciclo e benchmarks comparativos</li>
+                <li>Skills de marketing para copywriting estruturado, sequencias de email e auditoria de SEO automatizada</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- #6 -->
+      <div class="rank-card">
+        <div class="rank-num-wrap">
+          <div class="rank-num">6</div>
+        </div>
+        <div class="rank-body">
+          <span class="rank-tag">Orquestracao</span>
+          <div class="rank-title">Opensquad (Orquestracao Multi-Agente)</div>
+          <div class="rank-desc">Framework que cria e executa squads com pipeline automatico. Inclui o Sherlock para investigacao de perfis sociais, o Architect para criacao de novos squads e 24 guias de melhores praticas. Browser persistente garante login unico em redes sociais.</div>
+          <button class="rank-apps-toggle" onclick="toggleApps(this)">
+            Aplicacoes Praticas <span class="toggle-arrow">&#9660;</span>
+          </button>
+          <div class="rank-apps">
+            <div class="rank-apps-inner">
+              <div class="rank-apps-label">Exemplos de uso</div>
+              <ul class="rank-apps-list">
+                <li>Criar squad para producao de conteudo no Instagram com pipeline automatico para feed, reels e stories</li>
+                <li>Usar o Sherlock para investigar perfis de referencia e extrair padroes reais de conteudo que funcionam</li>
+                <li>Pipeline automatico com checkpoints para aprovacao humana antes de publicar ou executar acoes criticas</li>
+                <li>Browser persistente que mantem login em redes sociais eliminando a necessidade de autenticar repetidamente</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- #7 -->
+      <div class="rank-card">
+        <div class="rank-num-wrap">
+          <div class="rank-num">7</div>
+        </div>
+        <div class="rank-body">
+          <span class="rank-tag">Camada Cognitiva</span>
+          <div class="rank-title">Motor de Raciocinio AI</div>
+          <div class="rank-desc">Sistema cognitivo com boundary detection para prevencao de alucinacao, memory management entre sessoes, semantic trees para organizacao de conhecimento e WFGY formulas para raciocinio estruturado. Melhora significativamente a qualidade e confiabilidade das respostas do Claude.</div>
+          <button class="rank-apps-toggle" onclick="toggleApps(this)">
+            Aplicacoes Praticas <span class="toggle-arrow">&#9660;</span>
+          </button>
+          <div class="rank-apps">
+            <div class="rank-apps-inner">
+              <div class="rank-apps-label">Exemplos de uso</div>
+              <ul class="rank-apps-list">
+                <li>/boundary:boundary-detect para identificar os limites do conhecimento do modelo antes de tomar decisoes criticas</li>
+                <li>/memory:memory-recall para recuperar contexto relevante de sessoes anteriores sem perder informacao importante</li>
+                <li>/reasoning:reasoning-multi-path para explorar multiplos caminhos de solucao e escolher o mais robusto</li>
+                <li>/wfgy:wfgy-formula-all para raciocinio estruturado completo em problemas complexos de engenharia ou negocios</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- #8 -->
+      <div class="rank-card">
+        <div class="rank-num-wrap">
+          <div class="rank-num">8</div>
+        </div>
+        <div class="rank-body">
+          <span class="rank-tag">Automacao</span>
+          <div class="rank-title">28 Hooks de Automacao</div>
+          <div class="rank-desc">Scripts Node.js que executam automaticamente em eventos especificos do Claude Code: antes de commits, apos cada edit, durante compactacao de contexto. Incluem scanner de secrets, lint auto-fix e monitoramento proativo de contexto para evitar perdas.</div>
+          <button class="rank-apps-toggle" onclick="toggleApps(this)">
+            Aplicacoes Praticas <span class="toggle-arrow">&#9660;</span>
+          </button>
+          <div class="rank-apps">
+            <div class="rank-apps-inner">
+              <div class="rank-apps-label">Exemplos de uso</div>
+              <ul class="rank-apps-list">
+                <li>secret-scanner.js bloqueia commits automaticamente quando detecta API keys, senhas ou tokens expostos no codigo</li>
+                <li>lint-fix.js corrige formatacao e erros de estilo automaticamente apos cada edicao de arquivo</li>
+                <li>gsd-context-monitor.js emite alertas quando o contexto esta ficando grande, sugerindo compactacao proativa</li>
+                <li>pre-compact-save.js salva estado critico antes da compactacao para nao perder informacoes importantes da sessao</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- #9 -->
+      <div class="rank-card">
+        <div class="rank-num-wrap">
+          <div class="rank-num">9</div>
+        </div>
+        <div class="rank-body">
+          <span class="rank-tag">Infraestrutura</span>
+          <div class="rank-title">DevOps &amp; Deploy Suite</div>
+          <div class="rank-desc">Namespace completo para infraestrutura moderna: Docker, CI/CD, Kubernetes, releases versionadas, rollbacks seguros e monitoring. De um simples git push ate um deploy em producao com confidence, tudo automatizado em comandos simples e composables.</div>
+          <button class="rank-apps-toggle" onclick="toggleApps(this)">
+            Aplicacoes Praticas <span class="toggle-arrow">&#9660;</span>
+          </button>
+          <div class="rank-apps">
+            <div class="rank-apps-inner">
+              <div class="rank-apps-label">Exemplos de uso</div>
+              <ul class="rank-apps-list">
+                <li>/deploy:ci-setup para configurar GitHub Actions, GitLab CI ou Jenkins com stages de build, test e deploy</li>
+                <li>/deploy:containerize-application para gerar Dockerfile otimizado com multi-stage build e security best practices</li>
+                <li>/devops:k8s-manifest para gerar manifestos Kubernetes production-ready com resources, probes e autoscaling</li>
+                <li>/deploy:rollback-deploy para executar rollback seguro em producao com verificacao de health checks automatica</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- #10 -->
+      <div class="rank-card">
+        <div class="rank-num-wrap">
+          <div class="rank-num">10</div>
+        </div>
+        <div class="rank-body">
+          <span class="rank-tag">Ecossistema</span>
+          <div class="rank-title">14 Marketplaces de Plugins</div>
+          <div class="rank-desc">Acesso a 14 repositorios curados de skills e plugins da comunidade: Anthropic oficial, Trail of Bits para seguranca, Claude Command Suite, VoltAgent e muito mais. Instale novas capacidades com um unico comando e mantenha o ambiente sempre atualizado.</div>
+          <button class="rank-apps-toggle" onclick="toggleApps(this)">
+            Aplicacoes Praticas <span class="toggle-arrow">&#9660;</span>
+          </button>
+          <div class="rank-apps">
+            <div class="rank-apps-inner">
+              <div class="rank-apps-label">Exemplos de uso</div>
+              <ul class="rank-apps-list">
+                <li>Plugin de planning-with-files para criar e manter planos de projeto persistentes que sobrevivem entre sessoes</li>
+                <li>Claude HUD para monitoramento visual do contexto e status do ambiente em tempo real</li>
+                <li>Oh-My-ClaudeCode para produtividade extra com atalhos, aliases e configuracoes avancadas</li>
+                <li>Skills de seguranca do Trail of Bits para auditoria profissional de contratos e codigo critico</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES GRID -->
+<section id="recursos">
   <div class="container">
     <div class="features-header reveal">
-      <div class="section-label">New in V2</div>
-      <h2 class="section-title">Everything you need.<br>Nothing you don't.</h2>
-      <p class="section-desc">Eight major capability areas, each a complete system in its own right.</p>
+      <div class="section-label">Novo na V2</div>
+      <h2 class="section-title">Tudo que voce precisa.<br>Nada que nao precisa.</h2>
+      <p class="section-desc">Oito grandes areas de capacidade, cada uma um sistema completo por conta propria.</p>
     </div>
 
     <div class="features-grid">
       <div class="feature-card">
-        <span class="feature-icon">🧠</span>
+        <span class="feature-icon">&#129504;</span>
         <div class="feature-title">211 Skills</div>
-        <div class="feature-desc">Learning network, marketing playbooks, and Opensquad orchestration. Modular skill libraries that compose into any workflow you need.</div>
+        <div class="feature-desc">Bibliotecas modulares de conhecimento. Learning Network com mais de 50 skills de documentacao, auditoria e otimizacao de performance. Skills de marketing cobrindo copywriting, SEO e sequencias de email para qualquer nicho.</div>
         <div class="feature-tag">Skill Libraries</div>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🤖</span>
-        <div class="feature-title">344 Agent Personas</div>
-        <div class="feature-desc">Dev, infra, data, security, business, marketing, and China market specialists. Every role covered — senior to executive.</div>
-        <div class="feature-tag">Agent Network</div>
+        <span class="feature-icon">&#129302;</span>
+        <div class="feature-title">344 Agentes</div>
+        <div class="feature-desc">Personas completas de dev (React, Next.js, Vue, Django, Rails, Flutter, Rust, Go), infra (K8s, Docker, Terraform, AWS/Azure/GCP), seguranca, negocios e marketing. Do junior ao CTO, todos os perfis cobertos com profundidade real.</div>
+        <div class="feature-tag">Rede de Agentes</div>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">♟</span>
+        <span class="feature-icon">&#9822;</span>
         <div class="feature-title">Expert Squads</div>
-        <div class="feature-desc">Advisory board (Ray Dalio, Naval), Copy (Gary Halbert, Ogilvy), Brand (Aaker, Neumeier), Design (Brad Frost), Hormozi, C-Level, Cybersecurity, Storytelling, Traffic Masters.</div>
-        <div class="feature-tag">Advisory Boards</div>
+        <div class="feature-desc">12 times com personalidades reais: Advisory Board, Copy Squad, Brand Squad, Design Squad, Hormozi Squad, C-Level Board, Cybersecurity Team, Storytelling Masters, Traffic Masters, Data Squad e Movement Squad. Times que debatem e refinam juntos.</div>
+        <div class="feature-tag">12 Squads</div>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">📈</span>
-        <div class="feature-title">Marketing Suite</div>
-        <div class="feature-desc">22 namespaces covering analytics, CRO, SEO, content, ads, CRM, and pricing. Training data in 11 languages for global reach.</div>
-        <div class="feature-tag">22 Namespaces</div>
+        <span class="feature-icon">&#128200;</span>
+        <div class="feature-title">Marketing 360</div>
+        <div class="feature-desc">22 namespaces cobrindo analytics, CRO, SEO, content, ads, CRM e pricing. Training data em 11 idiomas para campanhas globais. De pesquisa de keywords ate analise de funil completa com recomendacoes actionaveis e priorizadas.</div>
+        <div class="feature-tag">Marketing 360</div>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">⚡</span>
-        <div class="feature-title">AI Reasoning Engine</div>
-        <div class="feature-desc">Boundary detection, memory management, semantic trees, WFGY formulas, and multi-path reasoning. Think deeper, output better.</div>
-        <div class="feature-tag">Cognitive Layer</div>
+        <span class="feature-icon">&#9889;</span>
+        <div class="feature-title">Motor AI</div>
+        <div class="feature-desc">Boundary detection contra alucinacao, memory management entre sessoes, semantic trees para organizacao de conhecimento, WFGY formulas e multi-path reasoning. O Claude pensa com mais rigor e produce respostas mais confiaveis com esses tools.</div>
+        <div class="feature-tag">Camada Cognitiva</div>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🔗</span>
+        <span class="feature-icon">&#128279;</span>
         <div class="feature-title">Opensquad</div>
-        <div class="feature-desc">Multi-agent orchestration with Sherlock investigator, 24 best-practices guides, and persistent browser sessions. Automate anything.</div>
-        <div class="feature-tag">Orchestration</div>
+        <div class="feature-desc">Orquestracao multi-agente com Sherlock investigator para analise de perfis sociais, pipeline automatico com checkpoints, 24 guias de melhores praticas e browser persistente para manter login em redes sociais sem reautenticar.</div>
+        <div class="feature-tag">Orquestracao</div>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🚀</span>
+        <span class="feature-icon">&#128640;</span>
         <div class="feature-title">DevOps &amp; Deploy</div>
-        <div class="feature-desc">Releases, rollbacks, CI/CD pipelines, Kubernetes manifests, and containerization. Ship with confidence, roll back in seconds.</div>
-        <div class="feature-tag">Infrastructure</div>
+        <div class="feature-desc">Releases, rollbacks, CI/CD completo, manifestos Kubernetes e containerizacao com Docker. Do git push ate producao em um fluxo automatizado e auditavel. Compativel com GitHub Actions, GitLab CI, Jenkins e AWS CodePipeline.</div>
+        <div class="feature-tag">Infraestrutura</div>
       </div>
 
       <div class="feature-card">
-        <span class="feature-icon">🔬</span>
-        <div class="feature-title">Performance &amp; Testing</div>
-        <div class="feature-desc">Audit, bundle optimization, caching strategies, CDN configuration, load testing, and mutation testing coverage.</div>
+        <span class="feature-icon">&#128300;</span>
+        <div class="feature-title">Performance &amp; Testes</div>
+        <div class="feature-desc">Auditoria completa de codebase, bundle optimization, estrategias de caching, configuracao de CDN, load testing, mutation testing, property-based testing e visual testing. Qualidade e performance nao sao opcionais, sao o padrao.</div>
         <div class="feature-tag">QA Suite</div>
       </div>
     </div>
@@ -1142,125 +1720,225 @@
 </section>
 
 <!-- SQUADS MARQUEE -->
-<section id="squads" style="padding: 80px 0;">
+<section id="squads">
   <div class="squads-header reveal">
     <div class="section-label">Expert Squads</div>
-    <h2 class="section-title">World-class advisors,<br>on demand.</h2>
+    <h2 class="section-title">Especialistas de classe mundial,<br>sob demanda.</h2>
+    <p class="section-desc" style="margin-top: 0.5rem;">Times com personalidades reais que debatem, criticam e refinam para gerar o melhor output possivel.</p>
   </div>
 
   <div class="marquee-wrapper">
     <div style="overflow: hidden;">
       <div class="marquee-track">
-        <div class="squad-pill"><span>♟</span> Ray Dalio Advisory</div>
-        <div class="squad-pill"><span>🧭</span> Naval Ravikant</div>
-        <div class="squad-pill"><span>✍️</span> Gary Halbert Copy</div>
-        <div class="squad-pill"><span>🎨</span> David Ogilvy</div>
-        <div class="squad-pill"><span>🏷</span> David Aaker Brand</div>
-        <div class="squad-pill"><span>🌐</span> Marty Neumeier</div>
-        <div class="squad-pill"><span>🧩</span> Brad Frost Design</div>
-        <div class="squad-pill"><span>💰</span> Alex Hormozi</div>
-        <div class="squad-pill"><span>🔒</span> Cybersecurity Squad</div>
-        <div class="squad-pill"><span>📖</span> Storytelling Masters</div>
-        <div class="squad-pill"><span>📡</span> Traffic Masters</div>
-        <div class="squad-pill"><span>🏢</span> C-Level Board</div>
-        <!-- duplicate for seamless loop -->
-        <div class="squad-pill"><span>♟</span> Ray Dalio Advisory</div>
-        <div class="squad-pill"><span>🧭</span> Naval Ravikant</div>
-        <div class="squad-pill"><span>✍️</span> Gary Halbert Copy</div>
-        <div class="squad-pill"><span>🎨</span> David Ogilvy</div>
-        <div class="squad-pill"><span>🏷</span> David Aaker Brand</div>
-        <div class="squad-pill"><span>🌐</span> Marty Neumeier</div>
-        <div class="squad-pill"><span>🧩</span> Brad Frost Design</div>
-        <div class="squad-pill"><span>💰</span> Alex Hormozi</div>
-        <div class="squad-pill"><span>🔒</span> Cybersecurity Squad</div>
-        <div class="squad-pill"><span>📖</span> Storytelling Masters</div>
-        <div class="squad-pill"><span>📡</span> Traffic Masters</div>
-        <div class="squad-pill"><span>🏢</span> C-Level Board</div>
+        <div class="squad-pill"><span>&#9822;</span> Ray Dalio Advisory</div>
+        <div class="squad-pill"><span>&#129517;</span> Naval Ravikant</div>
+        <div class="squad-pill"><span>&#9997;&#65039;</span> Gary Halbert Copy</div>
+        <div class="squad-pill"><span>&#127912;</span> David Ogilvy</div>
+        <div class="squad-pill"><span>&#127991;</span> David Aaker Brand</div>
+        <div class="squad-pill"><span>&#127758;</span> Marty Neumeier</div>
+        <div class="squad-pill"><span>&#129513;</span> Brad Frost Design</div>
+        <div class="squad-pill"><span>&#128176;</span> Alex Hormozi</div>
+        <div class="squad-pill"><span>&#128274;</span> Cybersecurity Squad</div>
+        <div class="squad-pill"><span>&#128214;</span> Storytelling Masters</div>
+        <div class="squad-pill"><span>&#128225;</span> Traffic Masters</div>
+        <div class="squad-pill"><span>&#127962;</span> C-Level Board</div>
+        <!-- duplicate para loop continuo -->
+        <div class="squad-pill"><span>&#9822;</span> Ray Dalio Advisory</div>
+        <div class="squad-pill"><span>&#129517;</span> Naval Ravikant</div>
+        <div class="squad-pill"><span>&#9997;&#65039;</span> Gary Halbert Copy</div>
+        <div class="squad-pill"><span>&#127912;</span> David Ogilvy</div>
+        <div class="squad-pill"><span>&#127991;</span> David Aaker Brand</div>
+        <div class="squad-pill"><span>&#127758;</span> Marty Neumeier</div>
+        <div class="squad-pill"><span>&#129513;</span> Brad Frost Design</div>
+        <div class="squad-pill"><span>&#128176;</span> Alex Hormozi</div>
+        <div class="squad-pill"><span>&#128274;</span> Cybersecurity Squad</div>
+        <div class="squad-pill"><span>&#128214;</span> Storytelling Masters</div>
+        <div class="squad-pill"><span>&#128225;</span> Traffic Masters</div>
+        <div class="squad-pill"><span>&#127962;</span> C-Level Board</div>
       </div>
     </div>
     <div style="overflow: hidden; margin-top: 1rem;">
       <div class="marquee-track2">
-        <div class="squad-pill"><span>📊</span> Analytics Namespace</div>
-        <div class="squad-pill"><span>🔄</span> CRO Specialists</div>
-        <div class="squad-pill"><span>🔍</span> SEO Experts</div>
-        <div class="squad-pill"><span>📝</span> Content Strategy</div>
-        <div class="squad-pill"><span>📣</span> Ads Performance</div>
-        <div class="squad-pill"><span>🗂</span> CRM Architects</div>
-        <div class="squad-pill"><span>💲</span> Pricing Science</div>
-        <div class="squad-pill"><span>🐳</span> Kubernetes Deploy</div>
-        <div class="squad-pill"><span>🧪</span> Mutation Testing</div>
-        <div class="squad-pill"><span>🕵️</span> Sherlock Investigator</div>
-        <div class="squad-pill"><span>🌏</span> China Market</div>
-        <div class="squad-pill"><span>⚙️</span> CI/CD Pipeline</div>
-        <!-- duplicate -->
-        <div class="squad-pill"><span>📊</span> Analytics Namespace</div>
-        <div class="squad-pill"><span>🔄</span> CRO Specialists</div>
-        <div class="squad-pill"><span>🔍</span> SEO Experts</div>
-        <div class="squad-pill"><span>📝</span> Content Strategy</div>
-        <div class="squad-pill"><span>📣</span> Ads Performance</div>
-        <div class="squad-pill"><span>🗂</span> CRM Architects</div>
-        <div class="squad-pill"><span>💲</span> Pricing Science</div>
-        <div class="squad-pill"><span>🐳</span> Kubernetes Deploy</div>
-        <div class="squad-pill"><span>🧪</span> Mutation Testing</div>
-        <div class="squad-pill"><span>🕵️</span> Sherlock Investigator</div>
-        <div class="squad-pill"><span>🌏</span> China Market</div>
-        <div class="squad-pill"><span>⚙️</span> CI/CD Pipeline</div>
+        <div class="squad-pill"><span>&#128202;</span> Analytics</div>
+        <div class="squad-pill"><span>&#128260;</span> CRO</div>
+        <div class="squad-pill"><span>&#128269;</span> SEO</div>
+        <div class="squad-pill"><span>&#128221;</span> Conteudo</div>
+        <div class="squad-pill"><span>&#128227;</span> Ads</div>
+        <div class="squad-pill"><span>&#128208;</span> CRM</div>
+        <div class="squad-pill"><span>&#128178;</span> Pricing</div>
+        <div class="squad-pill"><span>&#128051;</span> Kubernetes</div>
+        <div class="squad-pill"><span>&#129514;</span> Mutation Testing</div>
+        <div class="squad-pill"><span>&#128373;&#65039;</span> Sherlock</div>
+        <div class="squad-pill"><span>&#127759;</span> China Market</div>
+        <div class="squad-pill"><span>&#9881;&#65039;</span> CI/CD</div>
+        <!-- duplicate para loop continuo -->
+        <div class="squad-pill"><span>&#128202;</span> Analytics</div>
+        <div class="squad-pill"><span>&#128260;</span> CRO</div>
+        <div class="squad-pill"><span>&#128269;</span> SEO</div>
+        <div class="squad-pill"><span>&#128221;</span> Conteudo</div>
+        <div class="squad-pill"><span>&#128227;</span> Ads</div>
+        <div class="squad-pill"><span>&#128208;</span> CRM</div>
+        <div class="squad-pill"><span>&#128178;</span> Pricing</div>
+        <div class="squad-pill"><span>&#128051;</span> Kubernetes</div>
+        <div class="squad-pill"><span>&#129514;</span> Mutation Testing</div>
+        <div class="squad-pill"><span>&#128373;&#65039;</span> Sherlock</div>
+        <div class="squad-pill"><span>&#127759;</span> China Market</div>
+        <div class="squad-pill"><span>&#9881;&#65039;</span> CI/CD</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ARCHITECTURE -->
-<section id="architecture">
+<!-- USE CASES -->
+<section id="casos-de-uso">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">Directory Structure</div>
-      <h2 class="section-title">Engineered for scale.<br>Simple to install.</h2>
-      <p class="section-desc" style="margin-bottom: 0;">One repository. Everything you need to supercharge Claude Code.</p>
+      <div class="section-label">Fluxos Reais</div>
+      <h2 class="section-title">Na Pratica &mdash; Como Usar</h2>
+      <p class="section-desc">Exemplos reais de fluxos de trabalho com a V2, por tipo de profissional.</p>
+    </div>
+
+    <div class="use-cases-grid">
+
+      <div class="use-case-card">
+        <div class="use-case-persona">&#128187;</div>
+        <div class="use-case-title">Desenvolvedor Full-Stack</div>
+        <div class="use-case-subtitle">Do codigo ao deploy com qualidade e seguranca</div>
+        <ul class="use-case-commands">
+          <li>
+            <span class="cmd-name">/dev:code-review</span>
+            <span class="cmd-desc">Revisao completa antes do PR com feedback de senior engineer</span>
+          </li>
+          <li>
+            <span class="cmd-name">/security:audit</span>
+            <span class="cmd-desc">Verifica vulnerabilidades, segredos expostos e dependencias inseguras</span>
+          </li>
+          <li>
+            <span class="cmd-name">/deploy:ci-setup</span>
+            <span class="cmd-desc">Configura pipeline CI/CD completo do zero com stages de test e deploy</span>
+          </li>
+          <li>
+            <span class="cmd-name">/test:write-tests</span>
+            <span class="cmd-desc">Gera testes automaticos unitarios e de integracao para o codigo existente</span>
+          </li>
+          <li>
+            <span class="cmd-name">/git:pr-create</span>
+            <span class="cmd-desc">Cria PR formatado com descricao, checklist e contexto para o revisor</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-persona">&#128640;</div>
+        <div class="use-case-title">Fundador de Startup</div>
+        <div class="use-case-subtitle">Do produto a distribuicao com estrategia de classe mundial</div>
+        <ul class="use-case-commands">
+          <li>
+            <span class="cmd-name">/hormozi-squad:create-offer</span>
+            <span class="cmd-desc">Cria oferta irresistivel com o framework de Alex Hormozi aplicado ao seu produto</span>
+          </li>
+          <li>
+            <span class="cmd-name">/mktg-content:landing</span>
+            <span class="cmd-desc">Landing page de alta conversao com copy estruturado e hierarquia clara</span>
+          </li>
+          <li>
+            <span class="cmd-name">/mktg-seo:keywords</span>
+            <span class="cmd-desc">Pesquisa de palavras-chave com analise de intencao e oportunidades organicas</span>
+          </li>
+          <li>
+            <span class="cmd-name">/advisory-board:convene-board</span>
+            <span class="cmd-desc">Convoca conselho estrategico com Ray Dalio, Naval e Charlie Munger</span>
+          </li>
+          <li>
+            <span class="cmd-name">/mktg-cro:signup</span>
+            <span class="cmd-desc">Otimiza o fluxo de signup com psicologia aplicada e reducao de friccao</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="use-case-card">
+        <div class="use-case-persona">&#128200;</div>
+        <div class="use-case-title">Profissional de Marketing</div>
+        <div class="use-case-subtitle">Campanhas, conversao e crescimento organico integrados</div>
+        <ul class="use-case-commands">
+          <li>
+            <span class="cmd-name">/mktg-analytics:funnel</span>
+            <span class="cmd-desc">Analisa funil de conversao e identifica gargalos com recomendacoes especificas</span>
+          </li>
+          <li>
+            <span class="cmd-name">/copy-squad:write-sales-letter</span>
+            <span class="cmd-desc">Carta de vendas criada com Gary Halbert, Ogilvy e Eugene Schwartz colaborando</span>
+          </li>
+          <li>
+            <span class="cmd-name">/mktg-campaign:plan</span>
+            <span class="cmd-desc">Plano de campanha completo com objetivos, canais, mensagens e metricas</span>
+          </li>
+          <li>
+            <span class="cmd-name">/mktg-social:viral</span>
+            <span class="cmd-desc">Cria conteudo viral para redes sociais com ganchos e estrutura de alta retencao</span>
+          </li>
+          <li>
+            <span class="cmd-name">/mktg-seo:audit</span>
+            <span class="cmd-desc">Auditoria SEO completa com issues priorizadas por impacto e esforco estimado</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section id="arquitetura">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Estrutura de Diretorios</div>
+      <h2 class="section-title">Engenharia em escala.<br>Simples de instalar.</h2>
+      <p class="section-desc" style="margin-bottom: 0;">Um repositorio. Tudo que voce precisa para turbinar o Claude Code.</p>
     </div>
 
     <div class="arch-grid">
       <div class="arch-tree reveal reveal-delay-1">
         <div class="tree-root">claude-rubim-v2/</div>
         <div style="margin-top: 0.25rem;">
-          <div><span class="tree-branch">├── </span><span class="tree-name">commands/</span>&nbsp;&nbsp;&nbsp;<span class="tree-count">937 files</span>&nbsp;<span class="tree-note">(86 namespaces)</span></div>
-          <div><span class="tree-branch">├── </span><span class="tree-name">agents/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-count">344 agent personas</span></div>
-          <div><span class="tree-branch">├── </span><span class="tree-name">skills/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-count">211 skill libraries</span></div>
-          <div><span class="tree-branch">├── </span><span class="tree-name">hooks/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-count">28</span>&nbsp;<span class="tree-note">automation scripts</span></div>
-          <div><span class="tree-branch">├── </span><span class="tree-name">_opensquad/</span>&nbsp;<span class="tree-note">multi-agent framework</span></div>
-          <div><span class="tree-branch">├── </span><span class="tree-name">project-rules/</span>&nbsp;<span class="tree-count">8</span>&nbsp;<span class="tree-note">rule templates</span></div>
-          <div><span class="tree-branch">├── </span><span class="tree-name">settings.json</span>&nbsp;&nbsp;<span class="tree-count">14</span>&nbsp;<span class="tree-note">marketplaces</span></div>
-          <div><span class="tree-branch">└── </span><span class="tree-name">install.sh</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-note">one-command setup</span></div>
+          <div><span class="tree-branch">&#9500;&#9472;&#9472; </span><span class="tree-name">commands/</span>&nbsp;&nbsp;&nbsp;<span class="tree-count">937 arquivos</span>&nbsp;<span class="tree-note">(86 namespaces)</span></div>
+          <div><span class="tree-branch">&#9500;&#9472;&#9472; </span><span class="tree-name">agents/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-count">344 personas</span></div>
+          <div><span class="tree-branch">&#9500;&#9472;&#9472; </span><span class="tree-name">skills/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-count">211 bibliotecas</span></div>
+          <div><span class="tree-branch">&#9500;&#9472;&#9472; </span><span class="tree-name">hooks/</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-count">28</span>&nbsp;<span class="tree-note">scripts de automacao</span></div>
+          <div><span class="tree-branch">&#9500;&#9472;&#9472; </span><span class="tree-name">_opensquad/</span>&nbsp;<span class="tree-note">framework multi-agente</span></div>
+          <div><span class="tree-branch">&#9500;&#9472;&#9472; </span><span class="tree-name">project-rules/</span>&nbsp;<span class="tree-count">8</span>&nbsp;<span class="tree-note">templates de regras</span></div>
+          <div><span class="tree-branch">&#9500;&#9472;&#9472; </span><span class="tree-name">settings.json</span>&nbsp;&nbsp;<span class="tree-count">14</span>&nbsp;<span class="tree-note">marketplaces</span></div>
+          <div><span class="tree-branch">&#9492;&#9472;&#9472; </span><span class="tree-name">install.sh</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-note">instalacao em um comando</span></div>
         </div>
       </div>
 
       <div class="arch-stats">
         <div class="arch-stat-item reveal reveal-delay-1">
-          <div class="arch-stat-icon">⚡</div>
+          <div class="arch-stat-icon">&#9889;</div>
           <div>
             <div class="arch-stat-num">1</div>
-            <div class="arch-stat-label">Command to install everything</div>
+            <div class="arch-stat-label">Comando para instalar tudo</div>
           </div>
         </div>
         <div class="arch-stat-item reveal reveal-delay-2">
-          <div class="arch-stat-icon">🗂</div>
+          <div class="arch-stat-icon">&#128210;</div>
           <div>
             <div class="arch-stat-num">86</div>
-            <div class="arch-stat-label">Command namespaces organized by domain</div>
+            <div class="arch-stat-label">Namespaces organizados por dominio</div>
           </div>
         </div>
         <div class="arch-stat-item reveal reveal-delay-3">
-          <div class="arch-stat-icon">🌐</div>
+          <div class="arch-stat-icon">&#127758;</div>
           <div>
             <div class="arch-stat-num">11</div>
-            <div class="arch-stat-label">Languages for marketing training data</div>
+            <div class="arch-stat-label">Idiomas para training data de marketing</div>
           </div>
         </div>
         <div class="arch-stat-item reveal reveal-delay-4">
-          <div class="arch-stat-icon">📋</div>
+          <div class="arch-stat-icon">&#128203;</div>
           <div>
             <div class="arch-stat-num">24</div>
-            <div class="arch-stat-label">Best-practices guides included</div>
+            <div class="arch-stat-label">Guias de melhores praticas inclusos</div>
           </div>
         </div>
       </div>
@@ -1269,30 +1947,35 @@
 </section>
 
 <!-- INSTALL -->
-<section id="install">
+<section id="instalar">
   <div class="install-wrapper">
-    <div class="section-label reveal">One-Command Setup</div>
-    <h2 class="install-title reveal">Ready in seconds.</h2>
-    <p class="install-desc reveal">Clone the repo and run the installer. Every agent, skill, and command drops straight into your Claude Code environment.</p>
+    <div class="section-label reveal">Instalacao Rapida</div>
+    <h2 class="install-title reveal">Pronto em segundos.</h2>
+    <p class="install-desc reveal">Clone o repositorio e rode o instalador. Todos os agentes, skills e comandos vao direto para seu ambiente Claude Code.</p>
 
     <div class="code-block reveal">
       <div class="code-bar">
         <div class="dot dot-red"></div>
         <div class="dot dot-yellow"></div>
         <div class="dot dot-green"></div>
-        <span class="code-bar-title">Terminal — zsh</span>
-        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+        <span class="code-bar-title">Terminal &mdash; zsh</span>
+        <button class="copy-btn" onclick="copyCode(this)">Copiar</button>
       </div>
       <div class="code-content" id="install-code">
+        <div><span class="cmd-comment"># Clone o repositorio</span></div>
         <div><span class="cmd-prompt">$</span> <span class="sh-cmd">git</span> <span class="cmd-text">clone</span> <span class="sh-path">https://github.com/gabrielrbm-prog/claude-rubim-v2.git</span></div>
         <div><span class="cmd-prompt">$</span> <span class="sh-cmd">cd</span> <span class="cmd-text">claude-rubim-v2</span></div>
+        <div>&nbsp;</div>
+        <div><span class="cmd-comment"># Execute o instalador</span></div>
         <div><span class="cmd-prompt">$</span> <span class="cmd-text">./install.sh</span></div>
+        <div>&nbsp;</div>
+        <div><span class="cmd-comment"># Pronto! 937 comandos, 344 agentes e 211 skills instalados.</span></div>
       </div>
     </div>
 
     <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;" class="reveal">
-      <a href="https://github.com/gabrielrbm-prog/claude-rubim-v2" class="btn-primary">View on GitHub</a>
-      <a href="#features" class="btn-secondary">Explore Features</a>
+      <a href="https://github.com/gabrielrbm-prog/claude-rubim-v2" class="btn-primary">Ver no GitHub</a>
+      <a href="#recursos" class="btn-secondary">Explorar Recursos</a>
     </div>
   </div>
 </section>
@@ -1302,15 +1985,24 @@
   <div class="footer-logo">Claude Rubim V2</div>
   <div class="footer-divider"></div>
   <p class="footer-text">
-    Built by <a href="https://github.com/gabrielrbm-prog">Gabriel Rubim</a> &nbsp;•&nbsp; Powered by Claude Code
+    Construido por <a href="https://github.com/gabrielrbm-prog">Gabriel Rubim</a> &nbsp;&bull;&nbsp; Powered by Claude Code
   </p>
   <p class="footer-text" style="margin-top: 0.5rem; opacity: 0.5; font-size: 0.78rem;">
-    937 commands &nbsp;•&nbsp; 344 agents &nbsp;•&nbsp; 211 skills
+    937 comandos &nbsp;&bull;&nbsp; 344 agentes &nbsp;&bull;&nbsp; 211 skills
   </p>
 </footer>
 
 <script>
-  /* ── Intersection Observer: reveal on scroll ── */
+  /* ── Toggle Aplicacoes Praticas ── */
+  function toggleApps(btn) {
+    const appsDiv = btn.nextElementSibling;
+    const isOpen = appsDiv.classList.contains('open');
+    appsDiv.classList.toggle('open', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+    btn.childNodes[0].textContent = !isOpen ? 'Fechar Aplicacoes ' : 'Aplicacoes Praticas ';
+  }
+
+  /* ── IntersectionObserver: reveal on scroll ── */
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1324,7 +2016,7 @@
 
   /* ── Feature cards stagger ── */
   const cardObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
         const cards = entry.target.querySelectorAll('.feature-card');
         cards.forEach((card, idx) => {
@@ -1335,8 +2027,39 @@
     });
   }, { threshold: 0.05 });
 
-  const grid = document.querySelector('.features-grid');
-  if (grid) cardObserver.observe(grid);
+  const featGrid = document.querySelector('.features-grid');
+  if (featGrid) cardObserver.observe(featGrid);
+
+  /* ── Use case cards stagger ── */
+  const useCaseObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const cards = entry.target.querySelectorAll('.use-case-card');
+        cards.forEach((card, idx) => {
+          setTimeout(() => card.classList.add('visible'), idx * 120);
+        });
+        useCaseObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.05 });
+
+  const useCasesGrid = document.querySelector('.use-cases-grid');
+  if (useCasesGrid) useCaseObserver.observe(useCasesGrid);
+
+  /* ── Rank cards stagger ── */
+  const rankObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        rankObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.rank-card').forEach((card, idx) => {
+    card.style.transitionDelay = Math.min(idx * 0.07, 0.5) + 's';
+    rankObserver.observe(card);
+  });
 
   /* ── Animated counters ── */
   function animateCounter(el, target, duration) {
@@ -1392,7 +2115,7 @@
     ];
     navigator.clipboard.writeText(lines.join('\n')).then(() => {
       const orig = btn.textContent;
-      btn.textContent = 'Copied!';
+      btn.textContent = 'Copiado!';
       btn.style.color = '#34d399';
       btn.style.borderColor = 'rgba(52,211,153,0.4)';
       setTimeout(() => {
@@ -1403,7 +2126,7 @@
     });
   }
 
-  /* ── Smooth nav hide/show on scroll ── */
+  /* ── Nav hide/show on scroll ── */
   let lastY = 0;
   const navEl = document.querySelector('nav');
   window.addEventListener('scroll', () => {
@@ -1415,7 +2138,6 @@
     }
     lastY = y;
   }, { passive: true });
-  navEl.style.transition = 'transform 0.3s ease';
 </script>
 </body>
 </html>
