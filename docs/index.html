@@ -1376,40 +1376,32 @@
       <h3 class="section-title" style="font-size:1.5rem;">Evolucao do sistema versao a versao</h3>
     </div>
 
-    <div class="reveal" style="margin-top:1.5rem; display:flex; flex-direction:column; gap:0.6rem;">
-
-      <!-- V2.2 -->
-      <div style="display:flex; align-items:center; gap:1rem; padding:0.75rem 1rem; background:rgba(167,139,250,0.06); border:1px solid rgba(167,139,250,0.2); border-radius:10px;">
-        <span style="font-size:0.75rem; font-weight:700; color:#a78bfa; min-width:3rem; text-align:center; background:rgba(167,139,250,0.15); padding:0.2rem 0.5rem; border-radius:999px;">v2.2</span>
-        <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
-          <span style="font-size:0.75rem; color:#cbd5e1; background:rgba(255,255,255,0.05); padding:0.2rem 0.6rem; border-radius:999px; border:1px solid rgba(255,255,255,0.08);">Renomeado para Hero-Framework</span>
-          <span style="font-size:0.75rem; color:#cbd5e1; background:rgba(255,255,255,0.05); padding:0.2rem 0.6rem; border-radius:999px; border:1px solid rgba(255,255,255,0.08);">Versionamento por push</span>
-        </div>
+    <div class="comparison-table reveal" style="margin-top:1.5rem;">
+      <div class="comp-row comp-header">
+        <div class="comp-cell">Versao</div>
+        <div class="comp-cell">Foco</div>
+        <div class="comp-cell">O que mudou</div>
       </div>
-
-      <!-- V2.1 -->
-      <div style="display:flex; align-items:center; gap:1rem; padding:0.75rem 1rem; background:rgba(52,211,153,0.06); border:1px solid rgba(52,211,153,0.2); border-radius:10px;">
-        <span style="font-size:0.75rem; font-weight:700; color:#34d399; min-width:3rem; text-align:center; background:rgba(52,211,153,0.15); padding:0.2rem 0.5rem; border-radius:999px;">v2.1</span>
-        <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
-          <span style="font-size:0.75rem; color:#cbd5e1; background:rgba(255,255,255,0.05); padding:0.2rem 0.6rem; border-radius:999px; border:1px solid rgba(255,255,255,0.08);">+9 skills</span>
-          <span style="font-size:0.75rem; color:#cbd5e1; background:rgba(255,255,255,0.05); padding:0.2rem 0.6rem; border-radius:999px; border:1px solid rgba(255,255,255,0.08);">+1 agente skill-hunter</span>
-          <span style="font-size:0.75rem; color:#cbd5e1; background:rgba(255,255,255,0.05); padding:0.2rem 0.6rem; border-radius:999px; border:1px solid rgba(255,255,255,0.08);">Painel dinamico</span>
-          <span style="font-size:0.75rem; color:#cbd5e1; background:rgba(255,255,255,0.05); padding:0.2rem 0.6rem; border-radius:999px; border:1px solid rgba(255,255,255,0.08);">Persona Hero (CLAUDE.md)</span>
-        </div>
+      <div class="comp-row">
+        <div class="comp-cell"><span class="comp-v2" style="color:#a78bfa;">v2.2</span></div>
+        <div class="comp-cell"><span class="comp-name">Identidade</span></div>
+        <div class="comp-cell" style="color:#94a3b8; font-size:0.85rem;">Renomeado para Hero-Framework &nbsp;&bull;&nbsp; Versionamento automatico por push</div>
       </div>
-
-      <!-- V2.0 -->
-      <div style="display:flex; align-items:center; gap:1rem; padding:0.75rem 1rem; background:rgba(99,102,241,0.06); border:1px solid rgba(99,102,241,0.2); border-radius:10px;">
-        <span style="font-size:0.75rem; font-weight:700; color:#818cf8; min-width:3rem; text-align:center; background:rgba(99,102,241,0.15); padding:0.2rem 0.5rem; border-radius:999px;">v2.0</span>
-        <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
-          <span style="font-size:0.75rem; color:#cbd5e1; background:rgba(255,255,255,0.05); padding:0.2rem 0.6rem; border-radius:999px; border:1px solid rgba(255,255,255,0.08);">937 commands</span>
-          <span style="font-size:0.75rem; color:#cbd5e1; background:rgba(255,255,255,0.05); padding:0.2rem 0.6rem; border-radius:999px; border:1px solid rgba(255,255,255,0.08);">344 agentes</span>
-          <span style="font-size:0.75rem; color:#cbd5e1; background:rgba(255,255,255,0.05); padding:0.2rem 0.6rem; border-radius:999px; border:1px solid rgba(255,255,255,0.08);">211 skills</span>
-          <span style="font-size:0.75rem; color:#cbd5e1; background:rgba(255,255,255,0.05); padding:0.2rem 0.6rem; border-radius:999px; border:1px solid rgba(255,255,255,0.08);">Opensquad</span>
-          <span style="font-size:0.75rem; color:#cbd5e1; background:rgba(255,255,255,0.05); padding:0.2rem 0.6rem; border-radius:999px; border:1px solid rgba(255,255,255,0.08);">GSD</span>
-        </div>
+      <div class="comp-row">
+        <div class="comp-cell"><span class="comp-v2" style="color:#34d399;">v2.1</span></div>
+        <div class="comp-cell"><span class="comp-name">Expansao</span></div>
+        <div class="comp-cell" style="color:#94a3b8; font-size:0.85rem;">+9 skills &nbsp;&bull;&nbsp; +1 agente skill-hunter &nbsp;&bull;&nbsp; Painel dinamico &nbsp;&bull;&nbsp; Persona Hero</div>
       </div>
-
+      <div class="comp-row">
+        <div class="comp-cell"><span class="comp-v2" style="color:#818cf8;">v2.0</span></div>
+        <div class="comp-cell"><span class="comp-name">Base</span></div>
+        <div class="comp-cell" style="color:#94a3b8; font-size:0.85rem;">937 commands &nbsp;&bull;&nbsp; 344 agentes &nbsp;&bull;&nbsp; 211 skills &nbsp;&bull;&nbsp; Opensquad &nbsp;&bull;&nbsp; GSD</div>
+      </div>
+      <div class="comp-row">
+        <div class="comp-cell"><span class="comp-v1">v1</span></div>
+        <div class="comp-cell"><span class="comp-name">Inicial</span></div>
+        <div class="comp-cell" style="color:#94a3b8; font-size:0.85rem;">109 commands &nbsp;&bull;&nbsp; 16 agentes &nbsp;&bull;&nbsp; 22 hooks</div>
+      </div>
     </div>
   </div>
 </section>
