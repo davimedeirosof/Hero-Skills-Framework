@@ -44,7 +44,7 @@ cd Hero-Framework
 | Versao | Alteracao | Impacto |
 |---|---|---|
 | V1 | Estrutura base clonada | Ponto de partida |
-| V2 | +828 commands, +328 agentes, +211 skills, +6 hooks | Reconstrucao completa |
+| V2 | 937 commands, 344 agentes, 211 skills, 28 hooks | Reconstrucao completa |
 | V2.1 | +9 skills, +1 agente skill-hunter, painel dinamico | Expansao operacional |
 | V2.2 | Renomeacao para Hero-Framework, versionamento automatico | Identidade padronizada |
 
