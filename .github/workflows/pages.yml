@@ -81,9 +81,13 @@ jobs:
       - name: Update README
         run: |
           # Atualizar versao no titulo
-          sed -i "s/# Hero-Skills-Framework v[0-9]*\.[0-9]*/# Hero-Skills-Framework v$NEW_VERSION/" README.md
+          sed -i "s/# Hero-Framework v[0-9]*\.[0-9]*/# Hero-Framework v$NEW_VERSION/" README.md
           # Atualizar numeros na linha de descricao
           sed -i "s/[0-9]* commands, [0-9]* agents, [0-9]* skills, [0-9]* hooks/$COMMANDS commands, $AGENTS_TOTAL agents, $SKILLS skills, $HOOKS hooks/" README.md
+          # Atualizar todos os titulos de secao que referenciam versao anterior
+          sed -i "s/na V[0-9]*\.[0-9]*/na V$NEW_VERSION/g" README.md
+          sed -i "s/na V2$/na V$NEW_VERSION/g" README.md
+          sed -i "s/disponiveis na V[0-9]*\.[0-9]*/disponiveis na V$NEW_VERSION/g" README.md
           echo "README atualizado para v$NEW_VERSION"
 
       - name: Update dashboard version badge
