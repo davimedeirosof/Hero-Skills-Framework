@@ -172,7 +172,8 @@
       z-index: 1;
     }
 
-    .version-badge.current {
+    .version-badge.current,
+    .version-block:first-child .version-badge {
       background: rgba(0,180,255,0.15);
       color: var(--accent);
       border: 1px solid rgba(0,180,255,0.3);
@@ -306,6 +307,7 @@
   <p class="page-desc">Registro completo de cada versao — o que foi adicionado, ajustado e evoluido.</p>
 
   <div class="timeline">
+    <!-- TIMELINE_INSERT_HERE -->
 
     <!-- V2.2 -->
     <div class="version-block">
