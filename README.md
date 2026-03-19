@@ -1,12 +1,12 @@
-# Claude Rubim V2
+# DaviClaude
 
-Setup completo e otimizado do Claude Code. 937 commands, 344 agents, 211 skills, 28 hooks, 14 marketplaces, Opensquad multi-agent orchestration, GSD meta-prompting, e muito mais.
+Setup completo e otimizado do Claude Code do Davi Medeiros. 937 commands, 344 agents, 211 skills, 28 hooks, 14 marketplaces, Opensquad multi-agent orchestration, GSD meta-prompting, e muito mais.
 
 ## Quick Install
 
 ```bash
-git clone https://github.com/gabrielrbm-prog/claude-rubim-v2.git
-cd claude-rubim-v2
+git clone https://github.com/davimedeirosof/DaviClaude.git
+cd DaviClaude
 ./install.sh
 ```
 

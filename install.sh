@@ -2,7 +2,7 @@
 set -e
 
 # ═══════════════════════════════════════════════════════
-# Claude Rubim V2 — Bootstrap Script
+# DaviClaude — Bootstrap Script
 # Replica o setup completo em qualquer maquina
 # ═══════════════════════════════════════════════════════
 
@@ -11,7 +11,7 @@ CLAUDE_DIR="$HOME/.claude"
 BACKUP_DIR="$HOME/.claude-backup-$(date +%Y%m%d-%H%M%S)"
 
 echo ""
-echo "  Claude Rubim V2 Installer"
+echo "  DaviClaude Installer"
 echo "  ─────────────────────────"
 echo ""
 
@@ -125,7 +125,7 @@ fi
 # ─── RESUMO ───
 echo ""
 echo "  ═══════════════════════════════════════"
-echo "  Instalacao completa! (V2)"
+echo "  Instalacao completa!"
 echo "  ═══════════════════════════════════════"
 echo ""
 echo "  Totais:"
