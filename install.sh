@@ -2,7 +2,7 @@
 set -e
 
 # ═══════════════════════════════════════════════════════
-# DaviClaude — Bootstrap Script
+# Hero-Skills-Framework — Bootstrap Script
 # Replica o setup completo em qualquer maquina
 # ═══════════════════════════════════════════════════════
 
@@ -11,7 +11,7 @@ CLAUDE_DIR="$HOME/.claude"
 BACKUP_DIR="$HOME/.claude-backup-$(date +%Y%m%d-%H%M%S)"
 
 echo ""
-echo "  DaviClaude Installer"
+echo "  Hero-Skills-Framework Installer"
 echo "  ─────────────────────────"
 echo ""
 
@@ -72,6 +72,15 @@ else
   cp "$DOTFILES_DIR/settings.json" "$CLAUDE_DIR/settings.json"
 fi
 echo "         settings.json configurado"
+
+# ─── 5b. CLAUDE.MD (persona Hero) ───
+echo "  [5b] Instalando persona Hero (CLAUDE.md)..."
+if [ -f "$DOTFILES_DIR/CLAUDE.md" ]; then
+  cp "$DOTFILES_DIR/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md"
+  echo "         CLAUDE.md instalado — persona Hero ativa"
+else
+  echo "         CLAUDE.md nao encontrado — pulando"
+fi
 
 # ─── 6. MCP CONFIG ───
 echo "  [6/10] Configurando .mcp.json..."
