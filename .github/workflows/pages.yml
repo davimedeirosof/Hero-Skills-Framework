@@ -23,10 +23,32 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          sparse-checkout: |
-            index.html
-          sparse-checkout-cone-mode: false
+
+      - name: Generate stats.json
+        run: |
+          COMMANDS=$(find commands -name "*.md" 2>/dev/null | wc -l | tr -d ' ')
+          AGENTS=$(find agents -name "*.md" 2>/dev/null | grep -v README | wc -l | tr -d ' ')
+          SKILLS=$(find skills -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l | tr -d ' ')
+          HOOKS=$(find hooks -name "*.js" 2>/dev/null | wc -l | tr -d ' ')
+          NAMESPACES=$(find commands -mindepth 1 -maxdepth 1 -type d 2>/dev/null | wc -l | tr -d ' ')
+          AGENTS_TOTAL=$((AGENTS + 5))
+          UPDATED=$(date +"%Y-%m-%d")
+
+          cat > stats.json << EOF
+          {
+            "commands": $COMMANDS,
+            "agents_installed": $AGENTS,
+            "agents_native": 5,
+            "agents_total": $AGENTS_TOTAL,
+            "skills": $SKILLS,
+            "hooks": $HOOKS,
+            "namespaces": $NAMESPACES,
+            "updated": "$UPDATED"
+          }
+          EOF
+
+          echo "Stats gerados:"
+          cat stats.json
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

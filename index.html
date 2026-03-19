@@ -1296,6 +1296,82 @@
 </footer>
 
 <script>
+  // LOAD STATS DYNAMICALLY
+  async function loadStats() {
+    try {
+      const res = await fetch('stats.json?v=' + Date.now());
+      if (!res.ok) return;
+      const s = await res.json();
+
+      // update stat counters
+      const map = {
+        '[data-to="916"]':  s.commands,
+        '[data-to="353"]':  s.agents_total,
+        '[data-to="211"]':  s.skills,
+        '[data-to="28"]':   s.hooks,
+      };
+      Object.entries(map).forEach(([sel, val]) => {
+        const el = document.querySelector(sel);
+        if (el) el.dataset.to = val;
+      });
+
+      // update sub labels
+      const subLabels = document.querySelectorAll('.stat-sub');
+      if (subLabels[0]) subLabels[0].textContent = s.namespaces + ' namespaces';
+      if (subLabels[1]) subLabels[1].textContent = s.agents_installed + ' instalados + ' + s.agents_native + ' nativos';
+      if (subLabels[2]) subLabels[2].textContent = 'por domínio';
+      if (subLabels[3]) subLabels[3].textContent = 'automatizados';
+
+      // update file tree counts
+      document.querySelectorAll('.t-cnt').forEach(el => {
+        if (el.textContent.includes('916')) el.textContent = s.commands + ' .md';
+        if (el.textContent.includes('348')) el.textContent = s.agents_installed + ' .md';
+        if (el.textContent.includes('211')) el.textContent = s.skills + ' dirs';
+        if (el.textContent.includes('28')) el.textContent = s.hooks + ' .js';
+      });
+
+      // update bar values
+      document.querySelectorAll('.bar-val').forEach(el => {
+        const label = el.previousElementSibling?.textContent;
+        if (label === 'Commands') el.textContent = s.commands;
+        if (label === 'Agentes totais') el.textContent = s.agents_total;
+        if (label === 'Agentes instalados') el.textContent = s.agents_installed;
+        if (label === 'Skills') el.textContent = s.skills;
+        if (label === 'Namespaces') el.textContent = s.namespaces;
+        if (label === 'Hooks') el.textContent = s.hooks;
+      });
+
+      // update organogram sub values
+      document.querySelectorAll('.org-sub-val').forEach(el => {
+        const tag = el.previousElementSibling?.textContent;
+        if (tag === 'instalados') el.textContent = s.agents_installed;
+        if (tag === 'skills') el.textContent = s.skills;
+      });
+
+      // update total line
+      document.querySelectorAll('.org-sub-val, span').forEach(el => {
+        if (el.textContent === '353') el.textContent = s.agents_total;
+      });
+
+      // update hero desc
+      const heroDesc = document.querySelector('.hero-desc');
+      if (heroDesc) {
+        heroDesc.innerHTML = heroDesc.innerHTML
+          .replace(/\d+ commands/, s.commands + ' commands')
+          .replace(/\d+ agentes/, s.agents_total + ' agentes');
+      }
+
+      // update footer updated date
+      if (s.updated) {
+        const meta = document.querySelector('.footer-meta');
+        if (meta) meta.textContent = 'Davi Medeiros — atualizado ' + s.updated;
+      }
+
+    } catch(e) { /* fallback para valores hardcoded */ }
+  }
+
+  loadStats();
+
   // REVEAL
   const obs = new IntersectionObserver(entries => {
     entries.forEach((e, i) => {
