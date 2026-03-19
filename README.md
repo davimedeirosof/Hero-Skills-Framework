@@ -1,4 +1,4 @@
-# Hero-Skills-Framework v2.1
+# Hero-Skills-Framework v2.3
 
 Setup completo e otimizado do Claude Code do Davi Medeiros. 937 commands, 354 agents, 220 skills, 28 hooks, 14 marketplaces, Opensquad multi-agent orchestration, GSD meta-prompting, e muito mais.
 
@@ -19,7 +19,7 @@ cd Hero-Skills-Framework
 - CLAUDE.md: persona Hero configurada
 
 ### v2.0 (base)
-937 commands, 344 agents, 211 skills, 28 hooks
+937 commands, 354 agents, 220 skills, 28 hooks
 
 ## V1 vs V2.1
 
