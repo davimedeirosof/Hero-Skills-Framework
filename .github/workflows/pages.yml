@@ -93,29 +93,29 @@ jobs:
           DATE=$(date +"%b %Y")
           cat > /tmp/new_version.html << HTMLEOF
 
-    <!-- V${NEW_VERSION} -->
-    <div class="version-block">
-      <div class="version-tag">
-        <div class="version-badge">V${NEW_VERSION}</div>
-        <div class="version-date">${DATE}</div>
-      </div>
-      <div class="version-content">
-        <div class="version-title">Atualizacao V${NEW_VERSION}</div>
-        <div class="version-subtitle">${COMMIT_MSG}</div>
-        <div class="change-group" style="margin-top:1rem;">
-          <div class="change-group-label">Numeros nesta versao</div>
-          <div class="stat-chips">
-            <span class="stat-chip">${COMMANDS} commands</span>
-            <span class="stat-chip">${AGENTS_TOTAL} agentes</span>
-            <span class="stat-chip">${SKILLS} skills</span>
-            <span class="stat-chip">${HOOKS} hooks</span>
-            <span class="stat-chip">14 marketplaces</span>
-            <span class="stat-chip">${NAMESPACES} namespaces</span>
+          <!-- V${NEW_VERSION} -->
+          <div class="version-block">
+            <div class="version-tag">
+              <div class="version-badge">V${NEW_VERSION}</div>
+              <div class="version-date">${DATE}</div>
+            </div>
+            <div class="version-content">
+              <div class="version-title">Atualizacao V${NEW_VERSION}</div>
+              <div class="version-subtitle">${COMMIT_MSG}</div>
+              <div class="change-group" style="margin-top:1rem;">
+                <div class="change-group-label">Numeros nesta versao</div>
+                <div class="stat-chips">
+                  <span class="stat-chip">${COMMANDS} commands</span>
+                  <span class="stat-chip">${AGENTS_TOTAL} agentes</span>
+                  <span class="stat-chip">${SKILLS} skills</span>
+                  <span class="stat-chip">${HOOKS} hooks</span>
+                  <span class="stat-chip">14 marketplaces</span>
+                  <span class="stat-chip">${NAMESPACES} namespaces</span>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-HTMLEOF
+          HTMLEOF
           sed -i '/<!-- TIMELINE_INSERT_HERE -->/r /tmp/new_version.html' docs/versions.html
 
       - name: Commit updates
