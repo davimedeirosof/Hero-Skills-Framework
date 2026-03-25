@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Template 16 — Esteter Full Screenshot</title>
+<style>
+  /* =========================================
+     ESTETER FULL SCREENSHOT — Type C
+     Print completo de matéria real como prova
+     Baseado em @economesteter
+     ========================================= */
+  :root {
+    --bg:           #0A0A0A;
+    --card:         #16181C;
+    --border:       #2F3336;
+    --text-primary: #E7E9EA;
+    --text-muted:   #71767B;
+    --accent-blue:  #1D9BF0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1350px;
+    background: var(--bg);
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-primary);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── BROWSER CHROME ── */
+  .browser-chrome {
+    flex: 0 0 auto;
+    background: #1E1E1E;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .browser-dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  .browser-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+  }
+
+  .browser-dot.red { background: #FF5F57; }
+  .browser-dot.yellow { background: #FFBD2E; }
+  .browser-dot.green { background: #28C840; }
+
+  .browser-url {
+    flex: 1;
+    background: #2A2A2A;
+    border-radius: 8px;
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .url-lock {
+    font-size: 20px;
+    color: var(--text-muted);
+  }
+
+  .url-text {
+    font-size: 22px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  /* ── SCREENSHOT CONTAINER ── */
+  .screenshot-container {
+    flex: 1;
+    padding: 16px;
+    display: flex;
+    align-items: stretch;
+    min-height: 0;
+  }
+
+  .screenshot-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  /* ── BRANDING FOOTER ── */
+  .branding-footer {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 40px;
+    background: var(--card);
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .footer-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .footer-handle {
+    font-size: 22px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+
+  .footer-label {
+    font-size: 22px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+
+<!-- BROWSER CHROME -->
+<div class="browser-chrome">
+  <div class="browser-dots">
+    <div class="browser-dot red"></div>
+    <div class="browser-dot yellow"></div>
+    <div class="browser-dot green"></div>
+  </div>
+  <div class="browser-url">
+    <span class="url-lock">🔒</span>
+    <span class="url-text">metropoles.com</span>
+  </div>
+</div>
+
+<!-- FULL SCREENSHOT -->
+<div class="screenshot-container">
+  <img class="screenshot-img" src="{{SCREENSHOT_IMG}}" alt="Screenshot da matéria completa">
+</div>
+
+<!-- BRANDING FOOTER -->
+<div class="branding-footer">
+  <div class="footer-profile">
+    <img class="footer-avatar" src="profile-photo.jpeg" alt="rubimfx">
+    <span class="footer-handle">@rubimfx</span>
+  </div>
+  <span class="footer-label">Fonte verificada ✓</span>
+</div>
+
+</body>
+</html>

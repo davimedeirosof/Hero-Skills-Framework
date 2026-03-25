@@ -1,0 +1,82 @@
+name: rubimfx-video-pipeline
+description: "Pipeline profissional de produção de vídeos curtos com clone IA"
+version: "2.0"
+
+phases:
+  planning:
+    - name: "Weekly Calendar"
+      agent: "Cal Calendar"
+      action: "Planejar semana de conteúdo (5-6 Reels)"
+      checkpoint: true
+      checkpoint_question: "Aprova o calendário da semana? Quer ajustar algum tema/formato?"
+    - name: "Trend Research"
+      agent: "Tina Trend"
+      action: "Pesquisar formatos virais da semana"
+      checkpoint: false
+
+  pre_production:
+    - name: "Script Writing"
+      agent: "Rex Roteirista"
+      action: "Criar roteiro baseado no formato escolhido"
+      inputs: "hook-database.md, tone-of-voice.md, anti-patterns.md"
+      checkpoint: true
+      checkpoint_question: "Aprova o roteiro? Quer ajustar algo?"
+    - name: "A/B Hook Test"
+      skill: "A/B Testing"
+      action: "Preparar variações de hook para teste"
+      checkpoint: false
+
+  production:
+    - name: "Voice Generation"
+      agent: "Elia ElevenLabs"
+      action: "Gerar áudio com clone de voz"
+      checkpoint: true
+      checkpoint_question: "O áudio está natural? Pronúncia OK?"
+    - name: "B-Roll Curation"
+      agent: "Bea B-Roll"
+      action: "Buscar vídeos/imagens de apoio"
+      checkpoint: false
+    - name: "Video Generation"
+      agent: "Hugo HeyGen"
+      action: "Gerar vídeo com clone facial + áudio"
+      checkpoint: true
+      checkpoint_question: "O vídeo do clone está realista? Lip sync OK?"
+
+  post_production:
+    - name: "Clone Validation"
+      skill: "Clone Validator"
+      action: "Validar qualidade do clone (score mínimo 8/10)"
+      checkpoint: true
+      checkpoint_question: "Score do clone atingiu 8/10? Aprovado?"
+    - name: "Post Processing"
+      skill: "Post Processing"
+      action: "Upscale, skin texture, lip sync fix se necessário"
+      checkpoint: false
+    - name: "Caption & Edit"
+      agent: "Sam Submagic"
+      action: "Adicionar legendas animadas e editar"
+      checkpoint: false
+    - name: "Thumbnail"
+      skill: "Thumbnail Generator"
+      action: "Criar capa/thumbnail do Reel"
+      checkpoint: false
+    - name: "CTA Selection"
+      skill: "CTA Optimizer"
+      action: "Selecionar CTA otimizado por objetivo"
+      checkpoint: false
+    - name: "Quality Gate"
+      skill: "Quality Gate"
+      action: "Validação final antes de publicar"
+      checkpoint: true
+      checkpoint_question: "Vídeo final passou no Quality Gate? Pronto para publicar?"
+
+  distribution:
+    - name: "Publish"
+      agent: "Pablo Publisher"
+      action: "Publicar no Instagram Reels e TikTok"
+      checkpoint: true
+      checkpoint_question: "Confirma publicação?"
+    - name: "Analytics"
+      agent: "Ana Analytics"
+      action: "Registrar métricas após 48 horas"
+      checkpoint: false

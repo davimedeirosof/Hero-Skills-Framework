@@ -1,0 +1,15 @@
+name: "RubimFX Content Pipeline"
+version: "1.0.0"
+steps:
+  - file: steps/step-01-research-focus.md
+  - file: steps/step-02-news-research.md
+  - file: steps/step-02b-visual-trends.md
+  - file: steps/step-03-news-selection.md
+  - file: steps/step-04-generate-angles.md
+  - file: steps/step-05-angle-selection.md
+  - file: steps/step-06-create-carousel.md
+  - file: steps/step-07-write-caption.md
+  - file: steps/step-08-content-approval.md
+  - file: steps/step-09-create-visuals.md
+  - file: steps/step-10-review.md
+  - file: steps/step-11-final-approval.md

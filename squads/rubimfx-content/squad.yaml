@@ -1,0 +1,63 @@
+name: "RubimFX Content OS"
+code: rubimfx-content
+description: "Squad de produção de conteúdo Instagram para @rubimfx — carrosséis de notícias macro/economia no estilo @economesteter, conectando eventos globais a forex, ouro, índices americanos e mesa proprietária."
+language: "Português (Brasil)"
+performance_mode: alta-performance
+
+agents:
+  - id: nara-noticia
+    name: "Nara Notícia"
+    icon: "🔍"
+    execution: subagent
+  - id: vitor-visual
+    name: "Vitor Visual"
+    icon: "🎨"
+    execution: subagent
+  - id: iago-instagram
+    name: "Iago Instagram"
+    icon: "💡"
+    execution: inline
+  - id: leo-legenda
+    name: "Léo Legenda"
+    icon: "✍️"
+    execution: inline
+  - id: diana-design
+    name: "Diana Design"
+    icon: "🖼️"
+    execution: inline
+  - id: renata-revisao
+    name: "Renata Revisão"
+    icon: "✅"
+    execution: inline
+
+skills:
+  - web_search
+  - web_fetch
+  - image-creator
+
+data:
+  - pipeline/data/research-brief.md
+  - pipeline/data/domain-framework.md
+  - pipeline/data/quality-criteria.md
+  - pipeline/data/output-examples.md
+  - pipeline/data/anti-patterns.md
+  - pipeline/data/tone-of-voice.md
+  - pipeline/data/style-guide-economesteter.md
+
+formats:
+  - instagram-feed
+
+pipeline:
+  steps:
+    - step-01-research-focus
+    - step-02-news-research
+    - step-02b-visual-trends
+    - step-03-news-selection
+    - step-04-generate-angles
+    - step-05-angle-selection
+    - step-06-create-carousel
+    - step-07-write-caption
+    - step-08-content-approval
+    - step-09-create-visuals
+    - step-10-review
+    - step-11-final-approval

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Template 14 — Esteter Cover</title>
+<style>
+  /* =========================================
+     ESTETER COVER — Type A
+     Capa dark editorial com fotos reais
+     Baseado em @economesteter
+     ========================================= */
+  :root {
+    --bg:           #0A0A0A;
+    --card:         #16181C;
+    --border:       #2F3336;
+    --text-primary: #E7E9EA;
+    --text-muted:   #71767B;
+    --accent-blue:  #1D9BF0;
+    --alert-red:    #F4212E;
+    --green:        #00BA7C;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1350px;
+    background: var(--bg);
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: var(--text-primary);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── PROFILE ROW ── */
+  .profile-row {
+    display: flex;
+    align-items: center;
+    padding: 40px 48px 0;
+    gap: 14px;
+    z-index: 2;
+    position: relative;
+  }
+
+  .profile-pic {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-blue);
+  }
+
+  .profile-info {
+    flex: 1;
+  }
+
+  .profile-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .verified {
+    color: var(--accent-blue);
+    font-size: 22px;
+  }
+
+  .profile-handle {
+    font-size: 22px;
+    color: var(--text-muted);
+    font-weight: 400;
+  }
+
+  .brand-icon {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+
+  /* ── BADGE ── */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 28px 48px 0;
+    padding: 8px 18px;
+    background: rgba(244, 33, 46, 0.12);
+    border: 1px solid rgba(244, 33, 46, 0.4);
+    border-radius: 8px;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--alert-red);
+    width: fit-content;
+    z-index: 2;
+    position: relative;
+  }
+
+  .badge-emoji {
+    font-size: 24px;
+  }
+
+  /* ── HEADLINE ── */
+  .headline {
+    padding: 24px 48px 0;
+    font-size: 44px;
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--text-primary);
+    z-index: 2;
+    position: relative;
+    max-width: 980px;
+  }
+
+  .headline strong {
+    color: #FFFFFF;
+  }
+
+  /* ── BODY TEXT ── */
+  .body-text {
+    padding: 20px 48px 0;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--text-muted);
+    z-index: 2;
+    position: relative;
+    max-width: 920px;
+  }
+
+  /* ── CTA ── */
+  .cta-text {
+    padding: 20px 48px 0;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--accent-blue);
+    z-index: 2;
+    position: relative;
+  }
+
+  /* ── PHOTO AREA (bottom 45%) ── */
+  .photo-area {
+    flex: 1;
+    display: flex;
+    gap: 12px;
+    padding: 24px 48px 0;
+    z-index: 2;
+    position: relative;
+    min-height: 0;
+  }
+
+  .photo-area img {
+    flex: 1;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+
+  /* ── SLIDE DOTS ── */
+  .slide-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 20px 0 28px;
+    z-index: 2;
+    position: relative;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+
+  .dot.active {
+    background: var(--accent-blue);
+    width: 24px;
+    border-radius: 5px;
+  }
+
+  /* ── AMBIENT GLOW ── */
+  .bg-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 600px 350px at 50% 20%, rgba(29, 155, 240, 0.08) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<!-- PROFILE ROW -->
+<div class="profile-row">
+  <img class="profile-pic" src="profile-photo.jpeg" alt="Gabriel Rubim">
+  <div class="profile-info">
+    <div class="profile-name">Gabriel Rubim <span class="verified">✓</span></div>
+    <div class="profile-handle">@rubimfx</div>
+  </div>
+  <div class="brand-icon">📈</div>
+</div>
+
+<!-- BADGE -->
+<div class="badge">
+  <span class="badge-emoji">{{BADGE_EMOJI}}</span>
+  URGENTE
+</div>
+
+<!-- HEADLINE -->
+<div class="headline">{{HEADLINE}}</div>
+
+<!-- BODY TEXT -->
+<div class="body-text">{{BODY}}</div>
+
+<!-- CTA -->
+<div class="cta-text">{{CTA}}</div>
+
+<!-- PHOTOS (bottom 45%) -->
+<div class="photo-area">
+  <img src="{{PHOTO_1}}" alt="Foto 1">
+  <img src="{{PHOTO_2}}" alt="Foto 2">
+</div>
+
+<!-- SLIDE DOTS -->
+<div class="slide-dots">
+  <div class="dot active"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+  <div class="dot"></div>
+</div>
+
+</body>
+</html>

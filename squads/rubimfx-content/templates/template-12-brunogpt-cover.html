@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Template 12 — BrunoGPT Neon Cover</title>
+<style>
+  /* =========================================
+     BRUNOGPT NEON COVER — Foto pessoal + neon + headline
+     Baseado em @brun0gpt
+     Uso: Capas de carrossel tech/IA/tutorial com vibe hacker
+     ========================================= */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700&display=swap');
+
+  :root {
+    --bg-dark:       #0a0a0a;
+    --text-white:    #FFFFFF;
+    --text-muted:    rgba(255,255,255,0.5);
+    --accent-red:    #FF2D2D;
+    --accent-neon:   #FF4444;
+    --accent-yellow: #FFD600;
+    --glow-red:      rgba(255,45,45,0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1350px;
+    background: var(--bg-dark);
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--text-white);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── BACKGROUND with neon glow ── */
+  .bg-glow {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      radial-gradient(ellipse 600px 500px at 50% 30%, var(--glow-red) 0%, transparent 60%),
+      radial-gradient(ellipse 400px 300px at 30% 20%, rgba(255,100,50,0.1) 0%, transparent 50%),
+      var(--bg-dark);
+  }
+
+  /* ── TOP: Photo area ── */
+  .photo-area {
+    position: relative;
+    z-index: 5;
+    flex: 0 0 600px;
+    overflow: hidden;
+  }
+
+  .photo-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .photo-area::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 250px;
+    background: linear-gradient(180deg, transparent 0%, var(--bg-dark) 100%);
+  }
+
+  /* Tag/badge over photo */
+  .tag-badge {
+    position: absolute;
+    bottom: 200px;
+    left: 48px;
+    z-index: 10;
+    background: var(--accent-red);
+    padding: 10px 24px;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text-white);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  /* ── MIDDLE: Headline ── */
+  .headline-area {
+    position: relative;
+    z-index: 10;
+    padding: 0 48px;
+    margin-top: -40px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 24px;
+  }
+
+  .headline {
+    font-family: 'Inter', sans-serif;
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--text-white);
+    line-height: 1.0;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+  }
+
+  .headline .hl-yellow { color: var(--accent-yellow); }
+  .headline .hl-red    { color: var(--accent-red); }
+
+  /* CTA badge */
+  .cta-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent-red);
+    padding: 12px 28px;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--accent-yellow);
+    letter-spacing: 1px;
+    width: fit-content;
+  }
+
+  .cta-arrows {
+    letter-spacing: 2px;
+  }
+
+  /* ── BOTTOM: Ticker/marquee ── */
+  .ticker-bar {
+    position: relative;
+    z-index: 10;
+    background: var(--bg-dark);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 16px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .ticker-content {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .ticker-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-red);
+    margin: 0 16px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+
+<!-- Photo area -->
+<div class="photo-area">
+  <img src="{{PHOTO}}" alt="{{CREATOR_NAME}}">
+  <div class="tag-badge">{{TAG_TEXT}}</div>
+</div>
+
+<!-- Headline -->
+<div class="headline-area">
+  <div class="headline">{{HEADLINE}}</div>
+  <div class="cta-badge">
+    {{CTA_TEXT}} <span class="cta-arrows">&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span>
+  </div>
+</div>
+
+<!-- Ticker bar -->
+<div class="ticker-bar">
+  <div class="ticker-content">
+    @{{USERNAME}} <span class="ticker-dot"></span> @{{USERNAME}}
+    <span class="ticker-dot"></span> @{{USERNAME}}
+    <span class="ticker-dot"></span> @{{USERNAME}}
+    <span class="ticker-dot"></span> @{{USERNAME}}
+    <span class="ticker-dot"></span> @{{USERNAME}}
+    <span class="ticker-dot"></span> @{{USERNAME}}
+    <span class="ticker-dot"></span> @{{USERNAME}}
+  </div>
+</div>
+
+</body>
+</html>

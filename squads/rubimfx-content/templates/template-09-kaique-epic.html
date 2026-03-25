@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Template 09 — Kaique Epic Cover</title>
+<style>
+  /* =========================================
+     KAIQUE EPIC — Imagem IA épica + texto giant bold
+     Baseado em @kaique.editor (237K seguidores)
+     Uso: CAPAS de carrossel com impacto máximo
+     ========================================= */
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  :root {
+    --text-white:    #FFFFFF;
+    --text-muted:    rgba(255,255,255,0.7);
+    --accent-yellow: #FFD600;
+    --accent-red:    #FF3B30;
+    --overlay-dark:  rgba(0,0,0,0.55);
+    --overlay-bottom: rgba(0,0,0,0.85);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1080px;
+    height: 1350px;
+    font-family: 'Inter', -apple-system, sans-serif;
+    color: var(--text-white);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ── BACKGROUND IMAGE ── */
+  .bg-image {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .bg-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Dark overlay gradient */
+  .bg-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+      linear-gradient(180deg,
+        rgba(0,0,0,0.3) 0%,
+        rgba(0,0,0,0.15) 20%,
+        rgba(0,0,0,0.25) 45%,
+        rgba(0,0,0,0.7) 70%,
+        rgba(0,0,0,0.92) 100%
+      );
+  }
+
+  /* ── CONTENT LAYER ── */
+  .content {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 56px 48px;
+  }
+
+  /* Main headline — GIANT bold */
+  .headline {
+    font-family: 'Anton', 'Impact', sans-serif;
+    font-size: 96px;
+    font-weight: 400; /* Anton is bold by default */
+    line-height: 0.95;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-white);
+    text-shadow:
+      0 2px 8px rgba(0,0,0,0.6),
+      0 4px 24px rgba(0,0,0,0.4);
+    margin-bottom: 28px;
+  }
+
+  .headline .hl-yellow { color: var(--accent-yellow); }
+  .headline .hl-red    { color: var(--accent-red); }
+
+  /* Fontes line */
+  .sources {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-muted);
+    line-height: 1.4;
+    margin-bottom: 32px;
+    padding-right: 40px;
+  }
+
+  .sources strong {
+    color: var(--text-white);
+    font-weight: 700;
+  }
+
+  /* Bottom bar: ARRASTA PRO LADO + @handle */
+  .bottom-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .cta-arrasta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+
+  .cta-arrows {
+    font-size: 24px;
+    color: var(--accent-yellow);
+    letter-spacing: 2px;
+  }
+
+  .handle {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  /* Slide dots */
+  .slide-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+  }
+
+  .dot.active {
+    background: var(--text-white);
+    width: 12px;
+    height: 12px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Background image (IA gerada ou foto real) -->
+<div class="bg-image">
+  <img src="{{BACKGROUND_IMAGE}}" alt="Background">
+</div>
+<div class="bg-overlay"></div>
+
+<!-- Content -->
+<div class="content">
+
+  <!-- GIANT HEADLINE -->
+  <div class="headline">{{HEADLINE}}</div>
+
+  <!-- Sources -->
+  <div class="sources">
+    <strong>Fontes:</strong> {{SOURCES}}
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="bottom-bar">
+    <div class="cta-arrasta">
+      ARRASTA PRO LADO <span class="cta-arrows">&gt;&gt;&gt;</span>
+    </div>
+    <div class="handle">@{{USERNAME}}</div>
+  </div>
+
+  <!-- Slide dots -->
+  <div class="slide-dots">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+  </div>
+
+</div>
+
+</body>
+</html>

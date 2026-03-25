@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Slide 10 — CTA Fixo</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1350px;
+    font-family: -apple-system, "Segoe UI", Arial, sans-serif;
+    color: #E7E9EA; overflow: hidden; position: relative;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+  }
+  .bg-gradient { position: absolute; inset: 0; background: linear-gradient(160deg, #050A1A 0%, #0A0520 35%, #0D0826 60%, #020210 100%); }
+  .orb { position: absolute; border-radius: 50%; pointer-events: none; }
+  .orb-1 { width: 700px; height: 700px; background: radial-gradient(circle, rgba(29,155,240,0.14) 0%, transparent 70%); top: -200px; left: -200px; }
+  .orb-2 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(120,86,255,0.17) 0%, transparent 70%); bottom: -150px; right: -150px; }
+  .orb-3 { width: 400px; height: 400px; background: radial-gradient(circle, rgba(29,155,240,0.07) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); }
+  .grid-overlay { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size: 80px 80px; pointer-events: none; }
+  .corner-deco { position: absolute; }
+  .corner-tl { top: 120px; left: 48px; width: 90px; height: 90px; border-top: 1px solid rgba(29,155,240,0.2); border-left: 1px solid rgba(29,155,240,0.2); }
+  .corner-br { bottom: 60px; right: 48px; width: 90px; height: 90px; border-bottom: 1px solid rgba(120,86,255,0.2); border-right: 1px solid rgba(120,86,255,0.2); }
+  .top-area { position: absolute; top: 46px; left: 56px; right: 56px; z-index: 10; display: flex; align-items: center; justify-content: space-between; }
+  .profile-row { display: flex; align-items: center; gap: 12px; }
+  .profile-pic { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(29,155,240,0.6); flex-shrink: 0; }
+  .profile-name { display: flex; align-items: center; gap: 6px; font-size: 24px; font-weight: 700; color: rgba(231,233,234,0.8); }
+  .verified { width: 22px; height: 22px; opacity: 0.7; flex-shrink: 0; }
+  .profile-handle { font-size: 22px; color: rgba(113,118,123,0.8); }
+  .slide-counter { font-size: 24px; font-weight: 600; color: rgba(113,118,123,0.8); }
+  .main-content { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 0; padding: 0 56px; text-align: center; }
+  .topic-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(29,155,240,0.1); border: 1px solid rgba(29,155,240,0.25); border-radius: 100px; padding: 10px 26px; font-size: 24px; font-weight: 700; color: #1D9BF0; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 44px; }
+  .cta-headline { font-size: 56px; font-weight: 900; color: #E7E9EA; line-height: 1.15; letter-spacing: -1px; margin-bottom: 14px; }
+  .cta-subheadline { font-size: 34px; font-weight: 400; color: rgba(113,118,123,0.9); line-height: 1.5; margin-bottom: 52px; max-width: 680px; }
+  .big-handle { font-size: 96px; font-weight: 900; letter-spacing: -3px; line-height: 0.9; margin-bottom: 28px; background: linear-gradient(135deg, #E7E9EA 0%, #1D9BF0 50%, #7856FF 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .cta-button { display: inline-flex; align-items: center; gap: 12px; background: #1D9BF0; color: #FFFFFF; font-size: 34px; font-weight: 800; padding: 22px 56px; border-radius: 100px; letter-spacing: -0.3px; margin-bottom: 44px; }
+  .cta-divider { width: 60px; height: 2px; background: rgba(255,255,255,0.1); border-radius: 1px; margin-bottom: 24px; }
+  .footer-text { font-size: 26px; color: rgba(113,118,123,0.7); letter-spacing: 0.3px; }
+  .footer-text strong { color: rgba(231,233,234,0.5); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="bg-gradient"></div>
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+<div class="grid-overlay"></div>
+<div class="corner-deco corner-tl"></div>
+<div class="corner-deco corner-br"></div>
+
+<div class="top-area">
+  <div class="profile-row">
+    <img class="profile-pic" src="profile-photo.jpeg" alt="rubimfx">
+    <div>
+      <div class="profile-name">rubimfx <svg class="verified" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.438 1.69-.882.445-.47.749-1.055.878-1.687.13-.633.08-1.29-.144-1.896.587-.274 1.087-.705 1.443-1.246.354-.54.553-1.17.57-1.817zm-6.081.414L9.24 16.8a.75.75 0 01-1.06 0l-2.52-2.52a.75.75 0 111.06-1.06l1.99 1.99 4.544-4.992a.75.75 0 011.103 1.014l-.002.002z" fill="#1D9BF0"/></svg></div>
+      <div class="profile-handle">@rubimfx</div>
+    </div>
+  </div>
+  <div class="slide-counter">10 / 10</div>
+</div>
+
+<div class="main-content">
+  <div class="topic-badge">Trading + Mindset + Protocolo</div>
+  <div class="cta-headline">Politica + economia<br>+ seu dinheiro.</div>
+  <div class="cta-subheadline">Conteudo que importa, sem enrolacao.</div>
+  <div class="big-handle">@rubimfx</div>
+  <div class="cta-button">Segue @rubimfx</div>
+  <div class="cta-divider"></div>
+  <div class="footer-text"><strong>Escola Trader Financiado</strong> &nbsp;&bull;&nbsp; ETF &nbsp;&bull;&nbsp; SMC20k</div>
+</div>
+
+</body>
+</html>

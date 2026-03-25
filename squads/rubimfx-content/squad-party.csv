@@ -1,0 +1,7 @@
+id,name,icon,path,execution
+nara-noticia,Nara Notícia,🔍,./agents/nara-noticia.agent.md,subagent
+vitor-visual,Vitor Visual,🎨,./agents/vitor-visual.agent.md,subagent
+iago-instagram,Iago Instagram,💡,./agents/iago-instagram.agent.md,inline
+leo-legenda,Léo Legenda,✍️,./agents/leo-legenda.agent.md,inline
+diana-design,Diana Design,🖼️,./agents/diana-design.agent.md,inline
+renata-revisao,Renata Revisão,✅,./agents/renata-revisao.agent.md,inline

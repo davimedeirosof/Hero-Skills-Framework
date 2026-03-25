@@ -1,0 +1,8 @@
+name,role,agent_file,execution
+Rex Roteirista,Roteirista de Reels,agents/rex-roteirista.agent.md,inline
+Hugo HeyGen,Clone Video Specialist,agents/hugo-heygen.agent.md,inline
+Elia ElevenLabs,Voice Clone Engineer,agents/elia-elevenlabs.agent.md,inline
+Sam Submagic,Caption & Edit Specialist,agents/sam-submagic.agent.md,inline
+Bea B-Roll,B-Roll Curator,agents/bea-broll.agent.md,inline
+Pablo Publisher,Social Media Publisher,agents/pablo-publisher.agent.md,inline
+Tina Trend,Viral Trend Hunter,agents/tina-trend.agent.md,inline
