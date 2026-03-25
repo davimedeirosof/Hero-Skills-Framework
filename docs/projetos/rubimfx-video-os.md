@@ -224,6 +224,128 @@ Transforma conteúdo longo (mentorias, lives, webinars) em 5-10 vídeos curtos.
 
 ---
 
+## Voz do Gabriel — Guia completo
+
+- **Velocidade:** 130-150 palavras/minuto com pausas estratégicas
+- **Tom:** direto, objetivo, autoridade de experiência prática (não teórica)
+- **Idioma:** PT-BR + termos técnicos em inglês (setup, FVG, SMC, prop firm)
+- **Palavras características:** "Cara", "Mano", "Entendeu?", "É protocolo"
+- **Evitar:** "Pessoal", "Galera", chamadas genéricas de YouTube
+- **Analogias recorrentes:** bíblicas (terra prometida, provação) | militares (protocolo, soldado) | esportivas (atleta de elite)
+- **Temas:** disciplina, saúde mental do trader, fé + trading, família como motivação, rejeição a atalhos
+- **Limites éticos:** nunca prometer ganhos, nunca ostentar luxo, nunca desmerece concorrentes nomeadamente
+- **Valores:** conservador, cristão, honesto brutalmente, protocolo > emoção
+
+---
+
+## Clone Perfection Guide
+
+### Indicadores de clone falso a evitar
+- Piscar rítmico em intervalos exatos (vs. natural irregular)
+- Pele plástica sem poros
+- Lip-sync errado em nasais ("ão", "em")
+- Cabeça estática sem micro-movimentos
+- Expressões travadas sem variação
+
+### Especificações de gravação base
+- Resolução: 4K mínimo, 60fps
+- Lente: 85-105mm (evita distorção facial de wide-angle)
+- Iluminação: 3 pontos profissional
+- Roupa: cores sólidas, sem padrões
+- Duração: 5-10 min contínuos sem cortes
+- Áudio: AT2020 ou equivalente, tratamento acústico, 5-7 min com variação emocional
+
+### Post-processing workflow
+video generation → upscaling → texture restoration → eye contact correction → color grading
+Ferramentas: Topaz Video AI, MuseTalk
+
+### Falhas comuns de animação e correções
+| Falha | Correção |
+|-------|----------|
+| Jaw Jitter | "mouth slightly parted" no prompt |
+| Eye Drift | "looking directly at camera" |
+| Skin Plasticity | "natural skin texture, visible pores" |
+| Neck Seam | iluminação uniforme + color grading |
+| Background Warping | "clean background" ou "blurred background" |
+| Hand Artifacts | "no hands near face" |
+| Hair Glitch | fundos mais escuros |
+| Identity Shift | fotos frontais com iluminação uniforme |
+
+### Ferramentas alternativas open source
+LivePortrait, SadTalker, MuseTalk
+
+---
+
+## Ranking de ferramentas de animação (2026)
+
+| # | Ferramenta | Score | Custo | Melhor para |
+|---|-----------|-------|-------|------------|
+| 1 | OmniHuman (ByteDance) | 9.5/10 | ~$0.10/min | Qualidade máxima |
+| 2 | HeyGen Avatar IV | 9/10 | $24/mês | Uso diário |
+| 3 | Hedra Character-3 | 8.5/10 | $10-15/mês | Conteúdo emocional |
+| 4 | Sync Labs | 8/10 | $29/mês | — |
+| 5 | D-ID Creative Reality | 7.5/10 | $25/mês | — |
+
+**Estratégia:** HeyGen para uso diário, Hedra para emocional, OmniHuman via Replicate para premium
+
+---
+
+## Por que Photo Clone → Animation bate Avatar Direto
+
+| | Avatar Direto | Photo Clone Pipeline |
+|---|---|---|
+| Custo | $194/mês (~R$970) | $70/mês (~R$350) |
+| Gravação | 2-5 min obrigatório | Fotos existentes |
+| Cenários | Fixo (gravação) | Ilimitados via prompts |
+| Controle | Roupas/fundo fixos | Total (prompt) |
+| Escalabilidade | Limitada | Alta |
+
+---
+
+## Banco de hooks (105 hooks em 6 categorias)
+
+| Categoria | Qt | Exemplo |
+|-----------|-----|---------|
+| Loss Aversion | 20 | "A maioria dos traders não perde por estratégia. Perde por isso." |
+| Curiosity Gap | 20 | "Tem um padrão no gráfico que aparece toda semana — e quase ninguém vê." |
+| Contrarian/Shock | 20 | "Esquece tudo que você aprendeu sobre suporte e resistência." |
+| Social Proof | 15 | Vitórias de alunos, pagamentos de prop firm |
+| Timeliness/News | 15 | Reações a decisões do Fed, dados econômicos |
+| Question/Poll | 15 | "Qual o pior erro que você já cometeu no trading?" |
+
+**Regras de uso:** selecionar 2 hooks de categorias diferentes para A/B | nunca repetir hook em 30 dias | adaptar ao conteúdo, não usar verbatim | rastrear performance por tipo
+
+---
+
+## 15 Anti-patterns do squad de vídeo
+
+**Visual:**
+1. Fontes < 22px — headlines mín. 64-80px, body 28-34px, labels 22px
+2. Stock images genéricas — usar screenshots reais, manchetes, dados visuais reais
+3. Screenshots full-page ilegíveis — recortar para seção relevante, zoom, highlight
+4. Layouts repetitivos — mínimo 3-4 estilos diferentes
+
+**Texto:**
+5. Acentos PT-BR ausentes — é, á, ã, õ, ç, ê, ô
+6. URLs externas no HTML — todos assets locais, sem CDN
+
+**Áudio:**
+7. Voz robótica — 130-150 palavras/min com pausas e variação emocional
+8. Música mais alta que a voz — música máx. 20% do volume da voz
+
+**Clone:**
+9. Pele plástica — post-processing com Claid.ai
+10. Lip-sync errado em nasais — usar MuseTalk para correção fonêmica
+11. Cabeça estática — instruções de movimento no prompt HeyGen
+12. Piscar robótico — verificar irregularidade em amostras de 30s
+
+**Publicação:**
+13. Publicar sem revisão — sempre passar Quality Gate
+14. CTA genérico ou ausente — 1 CTA específico por vídeo
+15. Mesmo formato diariamente — mínimo 3-4 formatos diferentes por semana
+
+---
+
 ## Stack completa e custos
 
 | Ferramenta | Uso | Custo |
