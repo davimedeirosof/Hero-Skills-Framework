@@ -276,13 +276,13 @@ Evento Macro → Impacto no Ativo → Leitura Técnica → Setup Ativado
 
 **Exemplo COPOM:** Selic +50bps → Diferencial BR-EUA alarga → Pressão vendedora no dólar → WDO sweep e reversão
 
-## 8 Templates HTML disponíveis
+## 8 Templates HTML disponíveis (18 arquivos no total)
 
 | # | Nome | Uso ideal |
 |---|------|-----------|
-| 01 | Dark Tweet | Cover de impacto máximo — card preto, badge vermelho |
-| 02 | News Magazine | Contextualizar artigos jornalísticos reais |
-| 03 | Neon Data | Slides com muitos dados de mercado — neon cyan |
+| 01 | Dark Tweet | Cover de impacto máximo — card preto, badge vermelho, collage fotos |
+| 02 | News Magazine | Contextualizar artigos jornalísticos reais — masthead, serifa |
+| 03 | Neon Data | Slides com muitos dados de mercado — neon cyan, navy |
 | 04 | Minimal Clean | Narrativa textual e análise — muito espaço branco |
 | 05 | Breaking News | Notícias urgentes — glow vermelho, breaking bar pulsante |
 | 06 | Personal Brand | Últimos slides e CTA — foto full-bleed, pílula dourada |
@@ -295,10 +295,58 @@ Evento Macro → Impacto no Ativo → Leitura Técnica → Setup Ativado
 - **Kaique Epic:** Amarelo `#FFD600`, Vermelho `#FF3B30`, Azul `#1D9BF0`, Verde `#00BA7C`
 - **InvisIA:** Roxo `#7C3AED` sobre preto `#000000`
 - **Padrão dark:** navy `#0D1117` ou charcoal `#1A1B2E` + branco + 1 accent (gold `#F59E0B` ou teal `#00D4AA`)
+- **BrunoGPT Neon:** Azul `#00D4FF`, Roxo `#7C3AED`, Verde `#00FF88` sobre preto `#0a0a0a`
+- **Esteter Style:** fundo `#0A0A0A`, cards `#16181C`, azul `#1D9BF0`, headlines 40-48px peso 900
+- **Hollyfield News:** preto `#0a0a0a`, accent laranja `#FF6B00`, foto hero 70-80% do card
+- **Twitter Dark (Dino):** preto `#000000`, cinza `#16181C`, vermelho `#F4212E`, azul `#1D9BF0`
+
+### Referências por estilo
+
+**Kaique Epic** (baseado em @kaique.editor, 237K):
+- TIPO A — Epic Cover: foto IA fullscreen, headline 80-96px, gradiente escuro, destaque amarelo/vermelho
+- TIPO B — Tweet Card: seção branca topo + foto temática abaixo, headlines 52px, body 28px
+- Estrutura 10 slides: Epic nos slides 1,4,7,10 — Tweet nos slides 2,3,5,6,8,9
+- Bottom bar obrigatória: "ARRASTA PRO LADO >>> @RUBIMFX"
+- Fotos Epic: "volumetric light, god-rays, epic scale"
+
+**Esteter Style** (escândalos, corrupção, revelações com dados):
+- Capa → 2 tweets → screenshot → 2 tweets → stats → screenshot → tweet → CTA
+- SEMPRE fotos reais editoriais — nunca IA ou stock genérico
+- Número específico (R$, %) obrigatório na headline
+
+**Hollyfield News** (breaking news, bancos centrais, geopolítica):
+- Header bar "@rubimfx │ Categoria │ © │ R" + foto hero + gradiente
+- Fotos: Reuters, AFP, AP quality; IA só para slides de abertura dramáticos
+- NÃO usar para conteúdo motivacional ou educação pura
+
+**Twitter Dark — 10 slides tipados:**
+1. Capa Breaking (tweet + 2 fotos collage + stats bar)
+2. Tweet + Artigo (card dark + card branco jornal)
+3. Screenshot Jornal 1 (fundo claro, browser bar)
+4. Bullets (5 items, bordas coloridas laterais)
+5. Número Gigante (128px em vermelho + 3 stats)
+6. Citações (quote blocks com tradução + foto)
+7. Comparativo (ANTES vermelho vs AGORA verde)
+8. Screenshot Jornal 2 (fonte diferente do slide 3)
+9. Conclusão (consequence items + CTA bar)
+10. CTA Final (gradiente dark blue/purple + @rubimfx gigante)
 
 ## Estrutura alternada de slides
 
 Alternância obrigatória: **Epic Cover** (foto dark full-bleed) + **Tweet Card** (branco, profile header). Nunca 3 slides consecutivos do mesmo tipo.
+
+## 8 Categorias de imagem IA
+
+| Cat | Tipo | Estilo |
+|-----|------|--------|
+| CAT-1 📸 | Fotografia realista | Photojournalism editorial para capas/fundos |
+| CAT-2 🤖 | Ilustração conceitual | Tech/abstrato, neon cyan, futurista dark |
+| CAT-3 📰 | Composição editorial | Pessoas + dados + contexto, iluminação dramática |
+| CAT-4 🔥 | Thumbnail high-impact | Close extremo, alto contraste sobre fundo escuro |
+| CAT-5 📊 | Data visual / infográfico | 3D dark com elementos brilhantes, comparativos |
+| CAT-6 🌍 | Geopolítica e macro | Comércio global, recursos, tensão, cinematográfico |
+| CAT-7 🧠 | Mindset motivacional | Tons dourados + sombras frias, aspiracional |
+| CAT-8 🇧🇷 | Conteúdo nacional | Documentário, iluminação natural, contexto local |
 
 ## Fontes de dados primárias
 
