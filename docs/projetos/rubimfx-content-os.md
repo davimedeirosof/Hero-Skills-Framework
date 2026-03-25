@@ -40,6 +40,29 @@ Posicionamento na interseção de **ICT/SMC + Order Flow + Mesa Proprietária (S
 - Permitido: educação sobre conceitos, trades reais com disclaimers
 - Proibido: "calls" de compra/venda sem autorização, sem transparência publicitária
 
+### Concorrentes mapeados
+
+| Tipo | Conta | Seguidores |
+|------|-------|-----------|
+| Direto | @smc_trading_br | 47K |
+| Direto | @escolatrading | — |
+| Direto | @zoom_trader_ict | — |
+| Referência internacional | @smcandict | 214K |
+| Mercado amplo | @antunes | ~2M |
+| Mercado amplo | @capaiffer | ~1M |
+| Mercado amplo | @atomeducacional | 258K |
+| Referência estrutural | @economesteter | 149K |
+
+### Frequência recomendada
+- **Reels:** 2-3x/semana
+- **Carrosséis:** 2-3x/semana
+- **Stories:** diariamente
+- **Lives:** 1x/semana (maior engajamento em mesas BR)
+
+### Identidade visual (regras de campo)
+- Paleta base: navy `#0D1117`, branco, dourado `#F59E0B` ou teal `#00D4AA`
+- **Regra crítica:** anotar DENTRO do TradingView, não redesenhar no Canva — autenticidade supera design polido
+
 ---
 
 ## Squad rubimfx-content
@@ -168,6 +191,27 @@ Rex Roteirista, Hugo HeyGen, Elia ElevenLabs, Sam Submagic, Bea B-Roll,
 Pablo Publisher, Tina Trend, Ana Analytics, Cal Calendar, Rip Repurpose
 
 ---
+
+## Fluxo de produção típico
+
+1. **Pesquisa** — histórias virais de múltiplas fontes (Nara)
+2. **Seleção de design** — tema e estilo visual (checkpoint Davi)
+3. **Geração de imagens** — IA via Gemini `gemini-2.5-flash-image` + variantes clonadas
+4. **Criação dos slides** — 10 slides HTML com template escolhido (Diana)
+5. **Renderização** — conversão screenshot HTML → PNG via Playwright
+6. **Validação** — preflight checks automatizados (26 testes)
+7. **Publicação** — upload automático via Instagram Graph API
+
+## Tecnologias
+
+| Camada | Tecnologia |
+|--------|-----------|
+| Orquestração | Opensquad multi-agent |
+| Renderização | HTML/CSS → PNG via Playwright |
+| Geração de imagens | Google Gemini API (`gemini-2.5-flash-image`) |
+| Clone facial | Sistema multi-referência customizado com identity headers |
+| Publicação automática | Playwright MCP (Chrome) + Instagram Graph API |
+| Runtime | Python 3 + Node.js |
 
 ## Instalação
 

@@ -62,15 +62,27 @@ No Claude Code:
 /opensquad run rubimfx-content
 ```
 
+## Agentes especiais do core
+
+| Agente | Função |
+|--------|--------|
+| **Architect** | Cria e modifica squads automaticamente via perguntas |
+| **Sherlock** | Investiga perfis de referência (Instagram, YouTube, Twitter/X, LinkedIn) — salva em `_investigations/` |
+| **Pipeline Runner** | Executa squads automaticamente, pausa em checkpoints para aprovação do Davi |
+
 ## Arquivos locais
 
 | Caminho | Descrição |
 |---------|-----------|
 | `~/_opensquad/` | Instalação do Opensquad |
-| `~/squads/` | Squads criados |
-| `~/_opensquad/_memory/` | Memória global |
-| `~/_opensquad/_browser_profile/` | Perfil de browser persistente (sessões Playwright) |
+| `~/_opensquad/core/` | Arquivos internos críticos (não editar manualmente) |
+| `~/_opensquad/_memory/company.md` | Contexto persistente da empresa (carrega automaticamente) |
+| `~/_opensquad/_browser_profile/` | Perfil de browser persistente — gitignored |
 | `~/_opensquad/config/playwright.config.json` | Config do servidor Playwright |
+| `~/squads/` | Squads criados |
+| `~/squads/{nome}/_investigations/` | Análises de perfis (Sherlock) |
+| `~/squads/{nome}/output/` | Arquivos gerados por execução |
+| `~/squads/{nome}/dashboard/` | Virtual Office do squad |
 
 ## Virtual Office
 
