@@ -1,6 +1,6 @@
 # Hero-Framework v2.3
 
-Setup completo e otimizado do Claude Code do Davi Medeiros. 937 commands, 354 agents, 220 skills, 28 hooks, 14 marketplaces, 2 squads de produção, Opensquad multi-agent orchestration, GSD meta-prompting, e muito mais.
+Setup completo e otimizado do Claude Code do Davi Medeiros. 916 commands, 354 agents, 233 skills, 28 hooks, 14 marketplaces, 2 squads de produção, Opensquad multi-agent orchestration, GSD meta-prompting, e muito mais.
 
 ## Quick Install
 
@@ -60,9 +60,9 @@ cd Hero-Framework
 |--------|----------|---------|--------|-------|--------|----------|
 | V1 | 109 | 16 | — | 22 | — | Estrutura base |
 | V2 | 937 | 344 | 211 | 28 | — | Reconstrucao completa |
-| V2.1 | +0 (937) | +10 (354) | +9 (220) | +0 (28) | — | +9 skills, +1 agente skill-hunter, painel dinamico |
-| V2.2 | +0 (937) | +0 (354) | +0 (220) | +0 (28) | — | Renomeacao e padronizacao de identidade |
-| V2.3 | +0 (937) | +0 (354) | +13 (233) | +0 (28) | +2 | +2 squads rubimfx, +13 skills de vídeo, core atualizado |
+| V2.1 | 937 | 354 | 220 | 28 | — | +9 skills, +1 agente skill-hunter, painel dinamico |
+| V2.2 | 937 | 354 | 220 | 28 | — | Renomeacao e padronizacao de identidade |
+| V2.3 | 937 | 354 | 233 | 28 | 2 | +2 squads rubimfx, +13 skills de vídeo, core atualizado |
 
 > **V2.3 — O que foi adicionado:**
 > - +2 squads de produção (rubimfx-content: 89 arquivos, rubimfx-video: 43 arquivos)
