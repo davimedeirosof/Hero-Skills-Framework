@@ -62,7 +62,14 @@ cd Hero-Framework
 | V2 | 937 | 344 | 211 | 28 | — | Reconstrucao completa |
 | V2.1 | 937 | 345 | 220 | 28 | — | +9 skills, painel dinamico |
 | V2.2 | 937 | 345 | 220 | 28 | — | Identidade padronizada |
-| V2.3 | 916 | 245 | 220 | 28 | 2 | Squads rubimfx integrados |
+| V2.3 | 937 | 345 | 233 | 28 | 2 | +2 squads completos, +13 skills de vídeo, core atualizado |
+
+> **V2.3 — O que foi adicionado:**
+> - +2 squads de produção (rubimfx-content: 89 arquivos, rubimfx-video: 43 arquivos)
+> - +13 skills específicas de vídeo (clone-validator, lip-sync-fix, photo-to-video, quality-gate, voice-training, thumbnail-generator, trending-sounds, cta-optimizer, ab-testing, post-processing, prompt-engineering-video, nano-banana-video-prompts, recording-guide)
+> - 8 skills globais atualizadas (apify, blotato, canva, image-creator, image-fetcher, instagram-publisher, opensquad-agent-creator, opensquad-skill-creator)
+> - _opensquad/core atualizado (architect, runner, skills engine, sherlock, 24 best-practices)
+> - 13 templates HTML de preview dos estilos visuais
 
 ---
 
